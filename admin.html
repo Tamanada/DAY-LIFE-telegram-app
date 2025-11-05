@@ -1,486 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Admin Console</title>
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
-<body>
-  <header class="topbar admin-topbar">
-    <div class="logo">
-      <img src="assets/logo.png" alt="DAYLIFE Logo" />
-      <span>DAYLIFE Admin</span>
-    </div>
-  </header>
+/* -----------------------------
+   ADMIN CONSOLE
+--------------------------------*/
+.admin-page {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+}
 
-  <main class="admin-page">
-    <!-- Overview -->
-    <section class="admin-section">
-      <h1>Admin Console (local)</h1>
-      <p class="admin-muted">
-        Cette console lit et modifie les données stockées localement dans votre navigateur
-        (profile, rêves, réflexions).
-      </p>
+.admin-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e5e7eb;
+}
 
-      <div class="admin-grid">
-        <div class="admin-card">
-          <h3>Profil</h3>
-          <p><strong id="ovName">-</strong></p>
-          <p id="ovEmail" class="admin-muted">-</p>
-          <p>
-            ⭐ <span id="ovStars">0</span> étoiles &nbsp; • &nbsp;
-            🔥 <span id="ovStreak">0</span> jours de suite
-          </p>
-        </div>
+.admin-header h1 {
+  margin: 0 0 6px;
+}
+.admin-header p {
+  margin: 4px 0;
+}
+.admin-warning {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #b91c1c;
+}
 
-        <div class="admin-card">
-          <h3>Rêves</h3>
-          <p>Total : <strong id="ovDreamsTotal">0</strong></p>
-          <p>
-            En cours : <strong id="ovDreamsActive">0</strong><br />
-            Terminés : <strong id="ovDreamsDone">0</strong>
-          </p>
-        </div>
+.admin-summary {
+  margin-top: 12px;
+}
+.admin-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+.admin-summary-grid .label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+.admin-summary-grid .value {
+  font-size: 1rem;
+  font-weight: 600;
+}
 
-        <div class="admin-card">
-          <h3>Réflexions</h3>
-          <p>Total : <strong id="ovReflections">0</strong></p>
-          <p class="admin-muted">Journal quotidien de l'utilisateur.</p>
-        </div>
+.admin-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.admin-actions-row {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.admin-textarea {
+  width: 100%;
+  min-height: 160px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+  resize: vertical;
+}
 
-        <div class="admin-card">
-          <h3>Références</h3>
-          <p>Parrainages : <strong id="ovRefFriends">0</strong></p>
-          <p>Étoiles par parrainage : <strong>5 ⭐</strong></p>
-          <p>Total étoiles parrainage : <strong id="ovRefStars">0</strong></p>
-        </div>
-      </div>
-    </section>
+.small {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
 
-    <!-- Profile management -->
-    <section class="admin-section">
-      <h2>Gestion du profil (localStorage: "profile")</h2>
+.file-btn {
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  background: #f9fafb;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 
-      <div class="admin-form-grid">
-        <div class="admin-card">
-          <h3>Données principales</h3>
-          <label>Nom</label>
-          <input id="adminNameInput" type="text" placeholder="Nom" />
+.link-btn {
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #334155;
+  background: #f9fafb;
+}
 
-          <label>Email</label>
-          <input id="adminEmailInput" type="email" placeholder="vous@example.com" />
-
-          <label>Date de naissance</label>
-          <input id="adminBirthInput" type="date" />
-
-          <label>Sexe</label>
-          <select id="adminSexSelect">
-            <option value="male">Homme</option>
-            <option value="female">Femme</option>
-          </select>
-
-          <label>Pays (code)</label>
-          <input id="adminCountryInput" type="text" placeholder="FR, US, TH..." />
-
-          <label>Thème</label>
-          <select id="adminThemeSelect">
-            <option value="light">Clair</option>
-            <option value="dark">Sombre</option>
-            <option value="lunar">Lunaire</option>
-          </select>
-        </div>
-
-        <div class="admin-card">
-          <h3>Progression & parrainage</h3>
-          <label>Étoiles (totalStars)</label>
-          <input id="adminStarsInput" type="number" min="0" />
-
-          <label>Streak (streakDays)</label>
-          <input id="adminStreakInput" type="number" min="0" />
-
-          <label>Code parrainage (referralCode)</label>
-          <input id="adminRefCodeInput" type="text" readonly />
-
-          <label>Amis parrainés (referralFriends)</label>
-          <input id="adminRefFriendsInput" type="number" min="0" />
-
-          <button id="adminProfileSaveBtn" class="primary-btn full-width">
-            💾 Enregistrer le profil
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dreams management -->
-    <section class="admin-section">
-      <h2>Rêves (localStorage: "dreams")</h2>
-      <p class="admin-muted">
-        Liste brute des rêves stockés localement. Cette console suppose que le format est
-        similaire à celui utilisé dans la page Dreams : { title, status, deadline, ... }.
-      </p>
-
-      <div id="dreamsContainer" class="admin-table-wrapper">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Titre</th>
-              <th>Statut</th>
-              <th>Deadline</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="dreamsTableBody">
-            <!-- rempli en JS -->
-          </tbody>
-        </table>
-      </div>
-
-      <button id="adminDreamsClearBtn" class="danger-btn">
-        🗑️ Supprimer tous les rêves (local)
-      </button>
-    </section>
-
-    <!-- Reflections management -->
-    <section class="admin-section">
-      <h2>Réflexions (localStorage: "reflections")</h2>
-      <p class="admin-muted">
-        Chaque réflexion est enregistrée comme { text, date }. La console vous permet de les
-        visualiser et de les supprimer.
-      </p>
-
-      <div id="reflectionsContainer" class="admin-table-wrapper">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Date</th>
-              <th>Texte</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="reflectionsTableBody">
-            <!-- rempli en JS -->
-          </tbody>
-        </table>
-      </div>
-
-      <button id="adminReflectionsClearBtn" class="danger-btn">
-        🗑️ Supprimer toutes les réflexions (local)
-      </button>
-    </section>
-
-    <!-- Global actions -->
-    <section class="admin-section">
-      <h2>Export & Réinitialisation</h2>
-
-      <div class="admin-actions-row">
-        <button id="adminExportBtn" class="primary-btn">
-          ⬇️ Exporter les données (JSON)
-        </button>
-        <button id="adminResetAllBtn" class="danger-btn">
-          ⚠️ Reset complet du localStorage
-        </button>
-      </div>
-
-      <p class="admin-muted tiny-text">
-        Attention : le reset complet efface toutes les données de DAYLIFE sur cet appareil
-        (profil, rêves, réflexions, paramètres).
-      </p>
-    </section>
-  </main>
-
-  <script>
-    // Récupération / sauvegarde profil
-    const defaultProfile = {
-      name: "David",
-      email: "",
-      avatar: "assets/avatar.png",
-      totalStars: 0,
-      streakDays: 0,
-      birthdate: "",
-      sex: "male",
-      country: "",
-      lifeMode: "30000_days",
-      theme: "light",
-      referralCode: null,
-      referralFriends: 0
-    };
-
-    function loadProfile() {
-      let p = JSON.parse(localStorage.getItem("profile")) || defaultProfile;
-      if (!p.referralCode) {
-        p.referralCode =
-          "DAY" + Math.random().toString(36).substring(2, 8).toUpperCase();
-      }
-      return p;
-    }
-
-    function saveProfile(profile) {
-      localStorage.setItem("profile", JSON.stringify(profile));
-    }
-
-    function loadDreams() {
-      return JSON.parse(localStorage.getItem("dreams")) || [];
-    }
-
-    function saveDreams(dreams) {
-      localStorage.setItem("dreams", JSON.stringify(dreams));
-    }
-
-    function loadReflections() {
-      return JSON.parse(localStorage.getItem("reflections")) || [];
-    }
-
-    function saveReflections(reflections) {
-      localStorage.setItem("reflections", JSON.stringify(reflections));
-    }
-
-    // --- Rendu de la console ---
-    let profile = loadProfile();
-    let dreams = loadDreams();
-    let reflections = loadReflections();
-
-    function renderOverview() {
-      const activeDreams = dreams.filter((d) => d.status === "in_progress").length;
-      const doneDreams = dreams.filter((d) => d.status === "completed").length;
-
-      document.getElementById("ovName").textContent = profile.name || "-";
-      document.getElementById("ovEmail").textContent = profile.email || "-";
-      document.getElementById("ovStars").textContent = profile.totalStars || 0;
-      document.getElementById("ovStreak").textContent = profile.streakDays || 0;
-
-      document.getElementById("ovDreamsTotal").textContent = dreams.length;
-      document.getElementById("ovDreamsActive").textContent = activeDreams;
-      document.getElementById("ovDreamsDone").textContent = doneDreams;
-
-      document.getElementById("ovReflections").textContent = reflections.length;
-      document.getElementById("ovRefFriends").textContent =
-        profile.referralFriends || 0;
-      document.getElementById("ovRefStars").textContent =
-        (profile.referralFriends || 0) * 5;
-    }
-
-    function renderProfileForm() {
-      document.getElementById("adminNameInput").value = profile.name || "";
-      document.getElementById("adminEmailInput").value = profile.email || "";
-      document.getElementById("adminBirthInput").value = profile.birthdate || "";
-      document.getElementById("adminSexSelect").value = profile.sex || "male";
-      document.getElementById("adminCountryInput").value = profile.country || "";
-      document.getElementById("adminThemeSelect").value = profile.theme || "light";
-      document.getElementById("adminStarsInput").value = profile.totalStars || 0;
-      document.getElementById("adminStreakInput").value = profile.streakDays || 0;
-      document.getElementById("adminRefCodeInput").value =
-        profile.referralCode || "";
-      document.getElementById("adminRefFriendsInput").value =
-        profile.referralFriends || 0;
-    }
-
-    function renderDreamsTable() {
-      const tbody = document.getElementById("dreamsTableBody");
-      tbody.innerHTML = "";
-
-      dreams.forEach((dream, index) => {
-        const tr = document.createElement("tr");
-
-        const title = dream.title || "(Sans titre)";
-        const status = dream.status || "unknown";
-        const deadline = dream.deadline || dream.dueDate || "-";
-
-        tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${title}</td>
-          <td>
-            <select data-index="${index}" class="dream-status-select">
-              <option value="in_progress" ${
-                status === "in_progress" ? "selected" : ""
-              }>En cours</option>
-              <option value="completed" ${
-                status === "completed" ? "selected" : ""
-              }>Terminé</option>
-              <option value="unknown" ${
-                status !== "in_progress" && status !== "completed" ? "selected" : ""
-              }>Inconnu</option>
-            </select>
-          </td>
-          <td>${deadline}</td>
-          <td>
-            <button data-index="${index}" class="dream-delete-btn">Supprimer</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      // listeners pour les sélecteurs de statut
-      document.querySelectorAll(".dream-status-select").forEach((select) => {
-        select.addEventListener("change", (e) => {
-          const i = parseInt(e.target.getAttribute("data-index"), 10);
-          dreams[i].status = e.target.value;
-          saveDreams(dreams);
-          renderOverview();
-        });
-      });
-
-      // listeners pour supprimer un rêve
-      document.querySelectorAll(".dream-delete-btn").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const i = parseInt(e.target.getAttribute("data-index"), 10);
-          if (confirm("Supprimer ce rêve ?")) {
-            dreams.splice(i, 1);
-            saveDreams(dreams);
-            dreams = loadDreams();
-            renderDreamsTable();
-            renderOverview();
-          }
-        });
-      });
-    }
-
-    function renderReflectionsTable() {
-      const tbody = document.getElementById("reflectionsTableBody");
-      tbody.innerHTML = "";
-
-      reflections.forEach((ref, index) => {
-        const dateLabel = ref.date
-          ? new Date(ref.date).toLocaleDateString()
-          : "-";
-        const text = ref.text || "";
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${dateLabel}</td>
-          <td class="admin-ref-text">${text}</td>
-          <td>
-            <button data-index="${index}" class="ref-delete-btn">Supprimer</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      document.querySelectorAll(".ref-delete-btn").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const i = parseInt(e.target.getAttribute("data-index"), 10);
-          if (confirm("Supprimer cette réflexion ?")) {
-            reflections.splice(i, 1);
-            saveReflections(reflections);
-            reflections = loadReflections();
-            renderReflectionsTable();
-            renderOverview();
-          }
-        });
-      });
-    }
-
-    // --- Écouteurs ---
-
-    document
-      .getElementById("adminProfileSaveBtn")
-      .addEventListener("click", () => {
-        profile.name = document.getElementById("adminNameInput").value.trim();
-        profile.email = document
-          .getElementById("adminEmailInput")
-          .value.trim();
-        profile.birthdate =
-          document.getElementById("adminBirthInput").value || "";
-        profile.sex = document.getElementById("adminSexSelect").value;
-        profile.country = document
-          .getElementById("adminCountryInput")
-          .value.toUpperCase();
-        profile.theme = document.getElementById("adminThemeSelect").value;
-        profile.totalStars = parseInt(
-          document.getElementById("adminStarsInput").value || "0",
-          10
-        );
-        profile.streakDays = parseInt(
-          document.getElementById("adminStreakInput").value || "0",
-          10
-        );
-        profile.referralFriends = parseInt(
-          document.getElementById("adminRefFriendsInput").value || "0",
-          10
-        );
-
-        saveProfile(profile);
-        profile = loadProfile();
-        renderOverview();
-        renderProfileForm();
-        alert("Profil enregistré dans localStorage ✅");
-      });
-
-    // Clear dreams
-    document
-      .getElementById("adminDreamsClearBtn")
-      .addEventListener("click", () => {
-        if (
-          confirm(
-            "Supprimer tous les rêves stockés localement ? (Cette action est irréversible)"
-          )
-        ) {
-          dreams = [];
-          saveDreams(dreams);
-          renderDreamsTable();
-          renderOverview();
-        }
-      });
-
-    // Clear reflections
-    document
-      .getElementById("adminReflectionsClearBtn")
-      .addEventListener("click", () => {
-        if (
-          confirm(
-            "Supprimer toutes les réflexions stockées localement ? (Cette action est irréversible)"
-          )
-        ) {
-          reflections = [];
-          saveReflections(reflections);
-          renderReflectionsTable();
-          renderOverview();
-        }
-      });
-
-    // Export data
-    document.getElementById("adminExportBtn").addEventListener("click", () => {
-      const data = {
-        profile,
-        dreams,
-        reflections
-      };
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: "application/json"
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "daylife-data.json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-
-    // Reset all
-    document
-      .getElementById("adminResetAllBtn")
-      .addEventListener("click", () => {
-        if (
-          confirm(
-            "⚠️ Cela va effacer TOUTES les données DAYLIFE stockées localement sur cet appareil. Continuer ?"
-          )
-        ) {
-          localStorage.clear();
-          alert("LocalStorage effacé. La page va se recharger.");
-          window.location.reload();
-        }
-      });
-
-    // initial render
-    renderOverview();
-    renderProfileForm();
-    renderDreamsTable();
-    renderReflectionsTable();
-  </script>
-</body>
-</html>
+@media (max-width: 768px) {
+  .admin-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .admin-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
