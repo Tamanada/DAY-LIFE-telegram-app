@@ -319,3 +319,61 @@ body {
   flex: 1;
   margin: 5px;
 }
+/* -----------------------------
+   REFLECTIONS PAGE
+--------------------------------*/
+.reflections-page {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+.stats-box {
+  background: white;
+  border-radius: 16px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.stats-box h2 {
+  font-size: 2.5rem;
+  color: var(--purple);
+  margin: 0;
+}
+.stats-box .small {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.reflection-list {
+  display: grid;
+  gap: 15px;
+}
+.reflection-card {
+  background: #fdf4ff;
+  border-left: 6px solid var(--purple);
+  border-radius: var(--radius);
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.reflection-card p {
+  margin: 0 0 10px;
+  font-style: italic;
+  color: #4b5563;
+}
+.reflection-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+.reflection-footer button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ef4444;
+}
+.reflection-footer button:hover {
+  color: #dc2626;
+}
