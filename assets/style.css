@@ -685,18 +685,12 @@ body {
 .admin-header h1 {
   margin: 0 0 6px;
 }
-.admin-header p {
-  margin: 4px 0;
-}
 .admin-warning {
   margin-top: 8px;
   font-size: 0.85rem;
   color: #b91c1c;
 }
 
-.admin-summary {
-  margin-top: 12px;
-}
 .admin-summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -712,33 +706,16 @@ body {
   font-weight: 600;
 }
 
-.admin-actions {
-  margin-top: 14px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.admin-actions-row {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
 .admin-textarea {
   width: 100%;
   min-height: 160px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: monospace;
   font-size: 0.85rem;
   padding: 8px 10px;
   border-radius: 10px;
   border: 1px solid #cbd5e1;
   background: #f9fafb;
   resize: vertical;
-}
-
-.small {
-  font-size: 0.8rem;
-  color: #6b7280;
 }
 
 .file-btn {
