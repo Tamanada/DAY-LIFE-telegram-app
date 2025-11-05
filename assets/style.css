@@ -1,93 +1,111 @@
-/* HOME PAGE STYLES */
-.home-page {
-  max-width: 600px;
+/* DREAMS PAGE */
+.dreams-page {
+  max-width: 800px;
   margin: auto;
-  padding: 30px 20px;
+  padding: 20px;
 }
-
-.profile-summary {
+.header-center {
   text-align: center;
   margin-bottom: 30px;
 }
-.avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+.header-center button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  color: white;
+  border: none;
+  cursor: pointer;
 }
-.stats-inline {
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+}
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  width: 30%;
+  text-align: center;
+  padding: 10px;
+}
+.dreams-grid {
+  display: grid;
+  gap: 15px;
+}
+.dream-card {
+  background: #f0f9ff;
+  border-left: 6px solid var(--blue);
+  padding: 15px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.dream-card.completed {
+  background: #ecfdf5;
+  border-left: 6px solid #10b981;
+  opacity: 0.9;
+}
+.dream-card h3 {
+  margin: 0 0 5px;
+}
+.deadline {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+.actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.actions button.delete {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.actions button:hover {
+  opacity: 0.9;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin-top: 10px;
+  align-items: center;
 }
-.stat {
-  text-align: center;
+.modal.hidden {
+  display: none;
 }
-.stat span {
-  display: block;
-}
-.stat .emoji {
-  font-size: 1.4rem;
-}
-
-.life-counter {
-  text-align: center;
-  background: linear-gradient(135deg, #f1f5ff, #fdf2f8);
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-.life-counter h1 {
-  font-size: 3rem;
-  color: var(--purple);
-}
-.progress-container {
-  background: #e5e7eb;
-  border-radius: 10px;
-  height: 10px;
-  width: 100%;
-  margin: 15px 0;
-}
-.progress-bar {
-  height: 10px;
-  background: linear-gradient(90deg, var(--blue), var(--purple));
-  border-radius: 10px;
-  transition: width 1s ease-in-out;
-}
-
-.inspiration {
+.modal-content {
   background: white;
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  margin-bottom: 25px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.inspiration blockquote {
-  font-style: italic;
-  color: var(--purple);
-  margin: 10px 0;
-}
-
-.how-to-earn {
-  background: #fff7ed;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-}
-.how-to-earn h3 {
-  color: var(--orange);
-  text-align: center;
+.modal-content input, .modal-content textarea {
+  width: 100%;
   margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
 }
-.how-to-earn ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.modal-content .buttons {
+  display: flex;
+  justify-content: space-between;
 }
-.how-to-earn li {
-  padding: 8px 0;
-  font-weight: 500;
+.modal-content button {
+  flex: 1;
+  margin: 5px;
 }
