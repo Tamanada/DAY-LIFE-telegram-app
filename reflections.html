@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAYLIFE — Reflections</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="DAYLIFE Logo" />
+      <span>DAYLIFE</span>
+    </div>
+    <nav class="desktop-nav">
+      <a href="home.html">🏠 Home</a>
+      <a href="dreams.html">💭 Dreams</a>
+      <a href="reflections.html" class="active">🪞 Reflections</a>
+      <a href="profile.html">👤 Profile</a>
+    </nav>
+  </header>
+
+  <main class="reflections-page">
+    <div class="header-center">
+      <h1>Daily Reflections</h1>
+      <p>A space to learn, grow, and be grateful.</p>
+      <button onclick="openReflectionForm()">➕ Add Reflection</button>
+    </div>
+
+    <div class="stats-box">
+      <h2 id="reflectionCount">0</h2>
+      <p>Total Reflections</p>
+      <p class="small">Each reflection brings you closer to understanding yourself.</p>
+    </div>
+
+    <div id="reflectionList" class="reflection-list"></div>
+
+    <!-- Reflection Form -->
+    <div id="reflectionForm" class="modal hidden">
+      <div class="modal-content">
+        <h3>Add Your Reflection</h3>
+        <textarea id="reflectionText" rows="6" placeholder="What did you learn or feel today?"></textarea>
+        <div class="buttons">
+          <button onclick="saveReflection()">Save</button>
+          <button class="cancel" onclick="closeReflectionForm()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="mobileNav"></footer>
+  <script src="assets/nav.js"></script>
+  <script>
+    createNavBar("reflections");
+
+    let reflections = JSON.parse(localStorage.getItem("reflections")) || [];
+
+    function renderReflections() {
+      const list = document.getElementById("reflectionList");
+      list.innerHTML = "";
+
+      reflections.forEach((reflection, index) => {
+        const card = document.createElement("div");
+        card.className = "reflection-card";
+        card.innerHTML = `
+          <p>${reflection.text}</p>
+          <div class="reflection-footer">
+            <span>${new Date(reflection.date).toLocaleDateString()}</span>
+            <button onclick="deleteReflection(${index})">🗑️</button>
+          </div>
+        `;
+        list.prepend(card);
+      });
+
+      document.getElementById("reflectionCount").innerText = reflections.length;
+      localStorage.setItem("reflections", JSON.stringify(reflections));
+    }
+
+    function openReflectionForm() {
+      document.getElementById("reflectionForm").classList.remove("hidden");
+      document.getElementById("reflectionText").value = "";
+    }
+
+    function closeReflectionForm() {
+      document.getElementById("reflectionForm").classList.add("hidden");
+    }
+
+    function saveReflection() {
+      const text = document.getElementById("reflectionText").value.trim();
+      if (!text) return alert("Please write something first!");
+      reflections.push({ text, date: new Date().toISOString() });
+      localStorage.setItem("reflections", JSON.stringify(reflections));
+      closeReflectionForm();
+      renderReflections();
+    }
+
+    function deleteReflection(index) {
+      if (confirm("Delete this reflection?")) {
+        reflections.splice(index, 1);
+        localStorage.setItem("reflections", JSON.stringify(reflections));
+        renderReflections();
+      }
+    }
+
+    renderReflections();
+  </script>
+</body>
+</html>
