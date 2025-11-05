@@ -1,4 +1,214 @@
-/* DREAMS PAGE */
+:root {
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --pink: #ec4899;
+  --orange: #f97316;
+  --bg-light: #f9fafb;
+  --text-dark: #334155;
+  --radius: 14px;
+}
+
+/* GLOBAL STYLE */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(180deg, #f0f4ff, #fff);
+  color: var(--text-dark);
+  padding-bottom: 80px;
+}
+
+/* Header */
+.topbar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.logo img {
+  width: 28px;
+  height: 28px;
+}
+.desktop-nav a {
+  text-decoration: none;
+  color: var(--text-dark);
+  margin: 0 10px;
+  font-weight: 500;
+}
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  color: var(--purple);
+}
+
+/* Splash screen */
+.splash {
+  text-align: center;
+  padding: 100px 20px;
+}
+.splash h1 {
+  font-size: 2.2rem;
+  color: var(--purple);
+}
+.splash button {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border: none;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  color: white;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.splash button:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile navigation */
+#mobileNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  z-index: 999;
+}
+#mobileNav a {
+  color: var(--text-dark);
+  text-decoration: none;
+  text-align: center;
+  font-size: 13px;
+}
+#mobileNav a.active {
+  color: var(--purple);
+}
+#mobileNav i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+@media (min-width: 768px) {
+  #mobileNav {
+    display: none;
+  }
+}
+
+/* -----------------------------
+   HOME PAGE STYLES
+--------------------------------*/
+.home-page {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+.profile-summary {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+.stats-inline {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+.stat {
+  text-align: center;
+}
+.stat span {
+  display: block;
+}
+.stat .emoji {
+  font-size: 1.4rem;
+}
+
+.life-counter {
+  text-align: center;
+  background: linear-gradient(135deg, #f1f5ff, #fdf2f8);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.life-counter h1 {
+  font-size: 3rem;
+  color: var(--purple);
+}
+.progress-container {
+  background: #e5e7eb;
+  border-radius: 10px;
+  height: 10px;
+  width: 100%;
+  margin: 15px 0;
+}
+.progress-bar {
+  height: 10px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+.inspiration {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  margin-bottom: 25px;
+}
+.inspiration blockquote {
+  font-style: italic;
+  color: var(--purple);
+  margin: 10px 0;
+}
+
+/* SECTION “How to Earn Stars” */
+.how-to-earn {
+  background: #fff7ed;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.how-to-earn h3 {
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.how-to-earn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.how-to-earn li {
+  padding: 8px 0;
+  font-weight: 500;
+}
+
+/* -----------------------------
+   DREAMS PAGE STYLES
+--------------------------------*/
 .dreams-page {
   max-width: 800px;
   margin: auto;
