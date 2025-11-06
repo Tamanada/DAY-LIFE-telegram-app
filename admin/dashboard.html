@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <!-- 🔒 Vérifie que l'utilisateur est admin -->
+  <!-- 🔐 Protection d’accès -->
   <script>
     const role = localStorage.getItem("userRole");
     const isAdmin = localStorage.getItem("adminLoggedIn");
@@ -18,7 +18,10 @@
     }
   </script>
 
-  <!-- 🌙 MENU LATÉRAL -->
+  <!-- 🍔 Menu burger mobile -->
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+
+  <!-- 🌙 SIDEBAR -->
   <aside class="sidebar hidden" id="sidebar">
     <h1>🌕 DAYLIFE Admin</h1>
     <nav class="menu">
@@ -30,75 +33,63 @@
     <button id="logoutBtn" class="logout-btn">Se déconnecter</button>
   </aside>
 
-  <!-- 🍔 MENU BURGER -->
-  <div class="burger" id="burger"><span></span><span></span><span></span></div>
-
-  <!-- 🌕 CONTENU PRINCIPAL -->
+  <!-- 🌕 MAIN CONTENT -->
   <main>
-    <header class="admin-header">
-      <h2>📊 Tableau de bord</h2>
-      <p class="subtitle">Aperçu général de l’activité DAYLIFE</p>
+    <header>
+      <h2>Tableau de bord</h2>
     </header>
 
-    <!-- 🔢 Statistiques principales -->
     <section class="stats-grid">
       <div class="stat-card">
         <h3>👥 Utilisateurs</h3>
-        <span id="userCount">125</span>
+        <span id="userCount">128</span>
       </div>
       <div class="stat-card">
-        <h3>💭 Rêves</h3>
-        <span id="dreamCount">342</span>
+        <h3>🌠 Rêves</h3>
+        <span id="dreamCount">352</span>
       </div>
       <div class="stat-card">
         <h3>🪞 Réflexions</h3>
         <span id="reflectionCount">589</span>
       </div>
       <div class="stat-card">
-        <h3>⭐ Étoiles</h3>
-        <span id="starCount">920</span>
+        <h3>⭐ Étoiles cumulées</h3>
+        <span id="starCount">987</span>
       </div>
     </section>
 
-    <!-- 📈 Graphique d’activité -->
     <section class="chart-section">
-      <h3>📅 Activité des 7 derniers jours</h3>
+      <h3>Activité des 7 derniers jours</h3>
       <canvas id="activityChart"></canvas>
     </section>
   </main>
 
-  <!-- 📊 SCRIPTS -->
   <script src="assets/admin.js"></script>
 
   <script>
-    // Exemple de données
-    const data = {
-      labels: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
-      users: [5, 8, 10, 12, 15, 11, 9],
-      stars: [25, 40, 35, 60, 70, 90, 65],
-    };
-
+    // --- Exemple de données dynamiques ---
     const ctx = document.getElementById("activityChart").getContext("2d");
+
     new Chart(ctx, {
       type: "line",
       data: {
-        labels: data.labels,
+        labels: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
         datasets: [
           {
             label: "Nouveaux utilisateurs",
-            data: data.users,
+            data: [5, 9, 7, 14, 10, 8, 12],
             borderColor: "#6366f1",
             backgroundColor: "rgba(99,102,241,0.2)",
             fill: true,
-            tension: 0.3,
+            tension: 0.4,
           },
           {
             label: "Étoiles gagnées",
-            data: data.stars,
+            data: [20, 30, 25, 50, 45, 60, 55],
             borderColor: "#f59e0b",
             backgroundColor: "rgba(245,158,11,0.2)",
             fill: true,
-            tension: 0.3,
+            tension: 0.4,
           },
         ],
       },
