@@ -3,37 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE – Admin Dashboard</title>
+  <title>DAYLIFE – Tableau de bord</title>
   <link rel="stylesheet" href="assets/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #eef2ff, #faf5ff, #fce7f3);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #c4b5fd;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    header button {
+      background: #fca5a5;
+      border: none;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background: #ef4444;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 24px;
+      text-align: left;
+      transition: 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 8px;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #4f46e5;
+    }
+
+    .chart-section {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      margin: 0 40px 60px;
+      padding: 30px;
+    }
+
+    .chart-section h2 {
+      margin: 0 0 20px;
+      color: #334155;
+      font-size: 1.4rem;
+    }
+
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      .stats-grid {
+        padding: 20px;
+      }
+      .chart-section {
+        margin: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="admin-header">
+  <script>
+    // Protection d’accès (si pas connecté)
+    if (!localStorage.getItem("adminLoggedIn")) {
+      window.location.href = "admin-login.html";
+    }
+  </script>
+
+  <header>
     <h1>🌙 DAYLIFE – Panneau d’administration</h1>
-    <button id="logoutBtn" class="logout-btn">Se déconnecter</button>
+    <button id="logoutBtn">Se déconnecter</button>
   </header>
 
-  <main class="dashboard">
-    <section class="card">
-      <h2>👥 Utilisateurs</h2>
-      <p>Total enregistré : <span id="userCount">–</span></p>
+  <main>
+    <section class="stats-grid">
+      <div class="stat-card">
+        <h3>👥 Utilisateurs</h3>
+        <span id="userCount">0</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>💭 Rêves</h3>
+        <span id="dreamCount">0</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>🪞 Réflexions</h3>
+        <span id="reflectionCount">0</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>⭐ Étoiles totales</h3>
+        <span id="totalStars">0</span>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>💭 Rêves</h2>
-      <p>Total enregistré : <span id="dreamCount">–</span></p>
-    </section>
-
-    <section class="card">
-      <h2>🪞 Réflexions</h2>
-      <p>Total enregistré : <span id="reflectionCount">–</span></p>
-    </section>
-
-    <section class="card">
-      <h2>🌍 Statistiques générales</h2>
-      <p>Prochaine étape : graphiques interactifs.</p>
+    <section class="chart-section">
+      <h2>📊 Activité des 7 derniers jours</h2>
+      <canvas id="activityChart"></canvas>
     </section>
   </main>
 
-  <script src="assets/admin.js"></script>
+  <script>
+    /* === Données simulées (temporairement statiques, à connecter à ta BDD plus tard) === */
+    const dashboardData = {
+      users: 125,
+      dreams: 342,
+      reflections: 589,
+      totalStars: 920,
+      activity: {
+        labels: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+        users: [5, 8, 12, 9, 15, 18, 10],
+        stars: [30, 50, 40, 60, 80, 70, 45]
+      }
+    };
+
+    /* === Injection des chiffres === */
+    document.getElementById("userCount").textContent = dashboardData.users;
+    document.getElementById("dreamCount").textContent = dashboardData.dreams;
+    document.getElementById("reflectionCount").textContent = dashboardData.reflections;
+    document.getElementById("totalStars").textContent = dashboardData.totalStars;
+
+    /* === Création du graphique Chart.js === */
+    const ctx = document.getElementById("activityChart").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: dashboardData.activity.labels,
+        datasets: [
+          {
+            label: "Nouveaux utilisateurs",
+            data: dashboardData.activity.users,
+            borderColor: "#6366f1",
+            backgroundColor: "rgba(99,102,241,0.2)",
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: "Étoiles gagnées",
+            data: dashboardData.activity.stars,
+            borderColor: "#f59e0b",
+            backgroundColor: "rgba(245,158,11,0.2)",
+            fill: true,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { position: "bottom" }
+        }
+      }
+    });
+
+    /* === Déconnexion === */
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("adminLoggedIn");
+      window.location.href = "admin-login.html";
+    });
+  </script>
 </body>
 </html>
