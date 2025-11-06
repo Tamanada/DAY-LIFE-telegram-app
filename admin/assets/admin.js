@@ -43,13 +43,14 @@ if (window.location.pathname.includes("users.html")) {
     window.location.href = "index.html";
   }
 
-  const users = [
-    { name: "David Deveaux", email: "lovephangan@gmail.com", country: "France", sex: "Homme", days: 18676, stars: 25 },
-    { name: "Nanda", email: "nanda@daylife.app", country: "Myanmar", sex: "Femme", days: 12045, stars: 18 },
-    { name: "Marie", email: "marie@daylife.app", country: "France", sex: "Femme", days: 4500, stars: 12 },
-    { name: "Alex Moon", email: "alex@daylife.app", country: "USA", sex: "Homme", days: 9950, stars: 30 },
-    { name: "Tao", email: "tao@daylife.app", country: "Thaïlande", sex: "Homme", days: 4745, stars: 9 },
-  ];
+const users = [
+  { name: "David Deveaux", email: "lovephangan@gmail.com", country: "France", sex: "Homme", role: "Admin", days: 18676, stars: 25 },
+  { name: "Nanda", email: "nanda@daylife.app", country: "Myanmar", sex: "Femme", role: "User", days: 12045, stars: 18 },
+  { name: "Marie", email: "marie@daylife.app", country: "France", sex: "Femme", role: "User", days: 4500, stars: 12 },
+  { name: "Alex Moon", email: "alex@daylife.app", country: "USA", sex: "Homme", role: "Admin", days: 9950, stars: 30 },
+  { name: "Tao", email: "tao@daylife.app", country: "Thaïlande", sex: "Homme", role: "User", days: 4745, stars: 9 },
+];
+
 
   const table = document.getElementById("userTable");
   const searchInput = document.getElementById("searchUser");
