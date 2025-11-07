@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Home</title>
+  <title>DAYLIFE — Every Day Counts</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -13,22 +13,24 @@
       <span>DAYLIFE</span>
     </div>
     <nav class="desktop-nav">
-      <a href="home.html" id="nav-home"></a>
-      <a href="dreams.html" id="nav-dreams"></a>
-      <a href="reflections.html" id="nav-reflections"></a>
-      <a href="profile.html" id="nav-profile"></a>
+      <a href="home.html" id="navHome"></a>
+      <a href="dreams.html" id="navDreams"></a>
+      <a href="reflections.html" id="navReflections"></a>
+      <a href="profile.html" id="navProfile"></a>
     </nav>
   </header>
 
-  <main class="home-page">
+  <main class="splash">
     <h1 class="home-greeting-title"></h1>
     <p class="home-greeting-sub"></p>
 
-    <ul>
-      <li>⭐ <span id="stars-earned"></span> <span id="text-stars"></span></li>
-      <li>💭 <span id="dreams-progress"></span> <span id="text-dreams"></span></li>
-      <li>🪞 <span id="reflections-written"></span> <span id="text-reflections"></span></li>
-    </ul>
+    <div class="stats">
+      <p>⭐ <span id="starsCount">25</span> <span id="starsLabel"></span></p>
+      <p>💭 <span id="dreamsCount">3</span> <span id="dreamsLabel"></span></p>
+      <p>💎 <span id="reflectionsCount">5</span> <span id="reflectionsLabel"></span></p>
+    </div>
+
+    <button onclick="window.location.href='dreams.html'">✨ Start dreaming</button>
   </main>
 
   <footer id="mobileNav"></footer>
@@ -36,21 +38,15 @@
   <script src="assets/nav.js"></script>
   <script>
     createNavBar("home");
-    document.getElementById("nav-home").innerText = t("home");
-    document.getElementById("nav-dreams").innerText = t("dreams");
-    document.getElementById("nav-reflections").innerText = t("reflections");
-    document.getElementById("nav-profile").innerText = t("profile");
-
+    document.getElementById("navHome").innerText = t("home");
+    document.getElementById("navDreams").innerText = t("dreams");
+    document.getElementById("navReflections").innerText = t("reflections");
+    document.getElementById("navProfile").innerText = t("profile");
     document.querySelector(".home-greeting-title").innerText = t("welcome");
     document.querySelector(".home-greeting-sub").innerText = t("subtitle");
-    document.getElementById("text-stars").innerText = t("stars");
-    document.getElementById("text-dreams").innerText = t("dreamsInProgress");
-    document.getElementById("text-reflections").innerText = t("reflectionsWritten");
-
-    // exemple de données statiques
-    document.getElementById("stars-earned").innerText = "25";
-    document.getElementById("dreams-progress").innerText = "3";
-    document.getElementById("reflections-written").innerText = "5";
+    document.getElementById("starsLabel").innerText = t("stars");
+    document.getElementById("dreamsLabel").innerText = t("dreamsInProgress");
+    document.getElementById("reflectionsLabel").innerText = t("reflectionsWritten");
   </script>
 </body>
 </html>
