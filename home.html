@@ -3,22 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Home</title>
-  <link rel="stylesheet" href="assets/nav.css" />
+  <title>DAYLIFE – Home</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="content" style="padding:20px;">
-      <h2>🌕 Welcome back to DAYLIFE</h2>
-      <p>Every day counts. Let’s make yours shine.</p>
-      <p>⭐ <strong>25</strong> Stars earned</p>
-      <p>💭 <strong>3</strong> Dreams in progress</p>
-      <p>🪞 <strong>5</strong> Reflections written</p>
-    </section>
-  </main>
+  <div class="app-shell">
+    <header id="appHeader"></header>
 
-  <footer id="mobileNav"></footer>
+    <main class="page">
+      <div class="page-inner">
+
+        <!-- HERO + LIFE CARD -->
+        <section class="section home-hero">
+          <div class="home-greeting">
+            <div class="home-greeting-top">
+              <div class="avatar-circle">✨</div>
+              <div>
+                <div class="home-greeting-title">Welcome back to DAYLIFE</div>
+                <div class="home-greeting-sub">
+                  Every day counts. Let’s make yours shine.
+                </div>
+              </div>
+            </div>
+            <div class="home-greeting-body">
+              You have a limited number of days. Use them to build a life you
+              are proud of – and enjoy every step of the way.
+            </div>
+
+            <div class="home-stats-row">
+              <div class="home-stat-pill">
+                ⭐ <span><strong>25</strong> Stars earned</span>
+              </div>
+              <div class="home-stat-pill">
+                💭 <span><strong>3</strong> Dreams in progress</span>
+              </div>
+              <div class="home-stat-pill">
+                🪞 <span><strong>5</strong> Reflections written</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="life-card">
+            <div class="life-label">You are living day</div>
+            <div class="life-number">#18 676</div>
+            <div class="life-caption">
+              11 324 days ahead · 62.3% of your journey completed
+            </div>
+            <div class="life-progress-bar">
+              <div class="life-progress-fill"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- QUOTE OF THE DAY -->
+        <section class="section">
+          <div class="quote-card">
+            <div class="quote-label">
+              ✨ TODAY'S INSPIRATION
+            </div>
+            <div class="quote-text">
+              “You are your own miracle.”
+            </div>
+            <div class="quote-sub">
+              Turn your days into dreams, and your dreams into days.
+            </div>
+          </div>
+        </section>
+
+        <!-- BLANK PAGE LINE -->
+        <section class="section">
+          <p class="section-subtitle">
+            Today is a blank page — write something that matters.
+          </p>
+        </section>
+
+        <!-- HOW TO EARN STARS -->
+        <section class="section">
+          <div class="card howto-card">
+            <div class="howto-header">
+              <div class="howto-title">⭐ How to Earn Stars</div>
+              <div class="howto-sub">
+                Every action counts towards your journey.
+              </div>
+            </div>
+            <div class="howto-grid">
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>📅</span>
+                  <span>Daily login</span>
+                </div>
+                <span class="howto-points">+1</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>💭</span>
+                  <span>Add a dream or goal</span>
+                </div>
+                <span class="howto-points">+2</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>✅</span>
+                  <span>Complete a dream</span>
+                </div>
+                <span class="howto-points">+5</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>✍️</span>
+                  <span>Add a reflection</span>
+                </div>
+                <span class="howto-points">+1</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>📌</span>
+                  <span>Complete a milestone</span>
+                </div>
+                <span class="howto-points">+1</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>🔥</span>
+                  <span>7-day streak bonus</span>
+                </div>
+                <span class="howto-points">+10</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left">
+                  <span>👥</span>
+                  <span>Invite a friend (referral)</span>
+                </div>
+                <span class="howto-points">+5</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer id="bottomNav"></footer>
+  </div>
+
   <script src="assets/nav.js"></script>
-  <script>createNavBar("home");</script>
+  <script>
+    createNavBar("home");
+  </script>
 </body>
 </html>
