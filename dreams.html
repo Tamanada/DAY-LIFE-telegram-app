@@ -8,22 +8,18 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="logo">
-      <img src="assets/logo.png" alt="DAYLIFE Logo" />
-      <span>DAYLIFE</span>
-    </div>
+    <div class="logo"><span>DAYLIFE</span></div>
     <nav class="desktop-nav">
-      <a href="home.html" id="nav-home"></a>
-      <a href="dreams.html" id="nav-dreams"></a>
-      <a href="reflections.html" id="nav-reflections"></a>
-      <a href="profile.html" id="nav-profile"></a>
+      <a href="home.html" id="navHome"></a>
+      <a href="dreams.html" id="navDreams"></a>
+      <a href="reflections.html" id="navReflections"></a>
+      <a href="profile.html" id="navProfile"></a>
     </nav>
   </header>
 
-  <main class="dreams-page">
-    <h1>💭 <span id="title-dreams"></span></h1>
-    <p id="subtitle-dreams"></p>
-
+  <main>
+    <h1>💭 <span id="dreamsTitle"></span></h1>
+    <p id="dreamsSubtitle"></p>
     <ul>
       <li>🌴 Travel to Koh Phangan — <strong>In progress</strong></li>
       <li>📘 Write my book — <strong>Planned</strong></li>
@@ -36,12 +32,12 @@
   <script src="assets/nav.js"></script>
   <script>
     createNavBar("dreams");
-    document.getElementById("nav-home").innerText = t("home");
-    document.getElementById("nav-dreams").innerText = t("dreams");
-    document.getElementById("nav-reflections").innerText = t("reflections");
-    document.getElementById("nav-profile").innerText = t("profile");
-    document.getElementById("title-dreams").innerText = t("dreams");
-    document.getElementById("subtitle-dreams").innerText = "Turn your days into dreams, and your dreams into days.";
+    document.getElementById("navHome").innerText = t("home");
+    document.getElementById("navDreams").innerText = t("dreams");
+    document.getElementById("navReflections").innerText = t("reflections");
+    document.getElementById("navProfile").innerText = t("profile");
+    document.getElementById("dreamsTitle").innerText = t("dreams");
+    document.getElementById("dreamsSubtitle").innerText = t("subtitle");
   </script>
 </body>
 </html>
