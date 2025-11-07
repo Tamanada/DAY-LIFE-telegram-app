@@ -1,55 +1,68 @@
-function createNavBar(activePage) {
-  const nav = document.getElementById("mobileNav");
-  if (!nav) return;
+// Simple shared navigation for all public pages
+// Usage in each page: createNavBar("home" | "dreams" | "reflections" | "profile");
 
-  nav.innerHTML = `
-    <nav class="mobile-nav">
-      <a href="home.html" class="${activePage === "home" ? "active" : ""}">
-        <div class="icon">${homeIcon()}</div>
-        <span>Home</span>
-      </a>
-      <a href="dreams.html" class="${activePage === "dreams" ? "active" : ""}">
-        <div class="icon">${targetIcon()}</div>
-        <span>Dreams</span>
-      </a>
-      <a href="reflections.html" class="${activePage === "reflections" ? "active" : ""}">
-        <div class="icon">${bookHeartIcon()}</div>
-        <span>Reflections</span>
-      </a>
-      <a href="profile.html" class="${activePage === "profile" ? "active" : ""}">
-        <div class="icon">${userIcon()}</div>
-        <span>Profile</span>
-      </a>
-    </nav>
-  `;
-}
+function createNavBar(active) {
+  const pages = [
+    { id: "home", label: "Home", icon: "🏠", href: "home.html" },
+    { id: "dreams", label: "Dreams", icon: "🎯", href: "dreams.html" },
+    { id: "reflections", label: "Reflections", icon: "📖", href: "reflections.html" },
+    { id: "profile", label: "Profile", icon: "👤", href: "profile.html" },
+  ];
 
-/* ==== SVG ICONS ==== */
-function homeIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 9L12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-    <polyline points="9 22 9 12 15 12 15 22"/>
-  </svg>`;
-}
+  // === HEADER (desktop / tablet) ===
+  const header = document.getElementById("appHeader");
+  if (header) {
+    header.innerHTML = `
+      <div class="app-header">
+        <div class="app-header-inner">
+          <div class="brand">
+            <div class="brand-orbit">🌕</div>
+            <div>
+              <div class="brand-text-main">DAYLIFE</div>
+              <div class="brand-text-sub">Every day counts</div>
+            </div>
+          </div>
+          <nav class="top-nav">
+            ${pages
+              .map(
+                (p) => `
+              <button
+                class="top-nav-item ${p.id === active ? "active" : ""}"
+                onclick="location.href='${p.href}'"
+              >
+                <span class="top-nav-icon">${p.icon}</span>
+                <span class="top-nav-label">${p.label}</span>
+              </button>
+            `
+              )
+              .join("")}
+          </nav>
+        </div>
+      </div>
+    `;
+  }
 
-function targetIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"/>
-    <circle cx="12" cy="12" r="6"/>
-    <circle cx="12" cy="12" r="2"/>
-  </svg>`;
-}
-
-function bookHeartIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v18l-8-4-8 4z"/>
-    <path d="M12 8l1.5 1.5L15 8a2 2 0 1 0-3 2 2 2 0 0 0-3-2z"/>
-  </svg>`;
-}
-
-function userIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="7" r="4"/>
-    <path d="M5.5 21a8.38 8.38 0 0 1 13 0"/>
-  </svg>`;
+  // === BOTTOM NAV (mobile) ===
+  const bottom = document.getElementById("bottomNav");
+  if (bottom) {
+    bottom.innerHTML = `
+      <nav class="bottom-nav">
+        <div class="bottom-nav-inner">
+          ${pages
+            .map(
+              (p) => `
+            <a
+              href="${p.href}"
+              class="bottom-nav-item ${p.id === active ? "active" : ""}"
+            >
+              <span class="bottom-nav-icon">${p.icon}</span>
+              <span>${p.label}</span>
+            </a>
+          `
+            )
+            .join("")}
+        </div>
+      </nav>
+    `;
+  }
 }
