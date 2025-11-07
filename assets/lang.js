@@ -134,17 +134,56 @@ const translations = {
   }
 };
 
-// detect or set language
+// ✅ Langue détectée ou enregistrée
 function getUserLang() {
-  return localStorage.getItem("lang") || navigator.language.slice(0, 2) || "en";
+  const storedLang = localStorage.getItem("lang");
+  if (storedLang && translations[storedLang]) return storedLang;
+
+  const browserLang = navigator.language.slice(0, 2);
+  if (translations[browserLang]) {
+    localStorage.setItem("lang", browserLang);
+    return browserLang;
+  }
+
+  localStorage.setItem("lang", "en");
+  return "en";
 }
 
+// ✅ Changer la langue manuellement
 function setLang(lang) {
-  localStorage.setItem("lang", lang);
-  location.reload();
+  if (translations[lang]) {
+    localStorage.setItem("lang", lang);
+    location.reload();
+  }
 }
 
+// ✅ Fonction de traduction
 function t(key) {
   const lang = getUserLang();
   return translations[lang]?.[key] || translations["en"][key] || key;
 }
+
+// ✅ Message d'accueil (1 seule fois)
+document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("langNoticeShown")) {
+    const lang = getUserLang();
+    const notice = document.createElement("div");
+    notice.textContent = `🌍 Language detected: ${lang.toUpperCase()}`;
+    notice.style.position = "fixed";
+    notice.style.bottom = "10px";
+    notice.style.left = "50%";
+    notice.style.transform = "translateX(-50%)";
+    notice.style.background = "linear-gradient(90deg, #7c3aed, #4f46e5)";
+    notice.style.color = "white";
+    notice.style.padding = "8px 16px";
+    notice.style.borderRadius = "12px";
+    notice.style.fontSize = "14px";
+    notice.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+    notice.style.zIndex = "1000";
+    document.body.appendChild(notice);
+    setTimeout(() => {
+      notice.remove();
+    }, 3000);
+    localStorage.setItem("langNoticeShown", "true");
+  }
+});
