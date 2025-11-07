@@ -3,77 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE – Reflections</title>
+  <title>DAYLIFE — Reflections</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header id="appHeader"></header>
+  <header class="topbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="DAYLIFE Logo" />
+      <span>DAYLIFE</span>
+    </div>
+    <nav class="desktop-nav">
+      <a href="home.html" id="nav-home"></a>
+      <a href="dreams.html" id="nav-dreams"></a>
+      <a href="reflections.html" id="nav-reflections"></a>
+      <a href="profile.html" id="nav-profile"></a>
+    </nav>
+  </header>
 
-    <main class="page">
-      <div class="page-inner">
+  <main class="reflections-page">
+    <h1>🪞 <span id="title-reflections"></span></h1>
+    <p id="subtitle-reflections"></p>
 
-        <section class="section">
-          <div class="section-title-row">
-            <span class="section-title-emoji">🪞</span>
-            <div class="section-title-text">Daily Reflections</div>
-          </div>
-          <p class="section-subtitle">
-            A space to learn, grow, and be grateful.
-          </p>
-        </section>
+    <ul>
+      <li>“Today I realized that peace begins with presence.”</li>
+      <li>“Sometimes resting is the most productive thing you can do.”</li>
+      <li>“Every full moon reminds me that cycles are part of growth.”</li>
+    </ul>
+  </main>
 
-        <section class="section">
-          <div class="reflection-list">
-
-            <article class="reflection-day">
-              <div class="reflection-date-row">
-                <span>✨</span>
-                <div class="reflection-date">November 5, 2025</div>
-              </div>
-              <div class="reflection-tagline">What I learned today</div>
-              <ul class="reflection-items">
-                <li>Peace begins with presence.</li>
-                <li>Small steps are still steps.</li>
-              </ul>
-            </article>
-
-            <article class="reflection-day">
-              <div class="reflection-date-row">
-                <span>🌅</span>
-                <div class="reflection-date">November 6, 2025</div>
-              </div>
-              <div class="reflection-tagline">Today I realised that…</div>
-              <ul class="reflection-items">
-                <li>Resting is sometimes the most productive thing.</li>
-                <li>My energy is my most precious resource.</li>
-              </ul>
-            </article>
-
-            <article class="reflection-day">
-              <div class="reflection-date-row">
-                <span>🌕</span>
-                <div class="reflection-date">November 7, 2025</div>
-              </div>
-              <div class="reflection-tagline">Grateful for…</div>
-              <ul class="reflection-items">
-                <li>Having a clear direction.</li>
-                <li>People who support my dreams.</li>
-              </ul>
-            </article>
-
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-    <footer id="bottomNav"></footer>
-  </div>
-
+  <footer id="mobileNav"></footer>
+  <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
   <script>
     createNavBar("reflections");
+    document.getElementById("nav-home").innerText = t("home");
+    document.getElementById("nav-dreams").innerText = t("dreams");
+    document.getElementById("nav-reflections").innerText = t("reflections");
+    document.getElementById("nav-profile").innerText = t("profile");
+    document.getElementById("title-reflections").innerText = t("reflections");
+    document.getElementById("subtitle-reflections").innerText = t("subtitle");
   </script>
 </body>
 </html>
