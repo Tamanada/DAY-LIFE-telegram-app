@@ -4,19 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAYLIFE — Every Day Counts</title>
-  <link rel="stylesheet" href="assets/nav.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="content" style="text-align:center; padding:40px 20px;">
-      <h1>🌕 Welcome to <span style="color:#7c3aed;">DAYLIFE</span></h1>
-      <p>Every day counts. Let’s make yours shine.</p>
-      <button onclick="window.location.href='home.html'" style="margin-top:20px; padding:14px 28px; border:none; border-radius:14px; background:linear-gradient(90deg,#7c3aed,#ec4899); color:white; font-size:1rem;">Start My Journey</button>
-    </section>
+  <header class="topbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="DAYLIFE Logo" />
+      <span>DAYLIFE</span>
+    </div>
+    <nav class="desktop-nav">
+      <a href="home.html" id="nav-home"></a>
+      <a href="dreams.html" id="nav-dreams"></a>
+      <a href="reflections.html" id="nav-reflections"></a>
+      <a href="profile.html" id="nav-profile"></a>
+    </nav>
+  </header>
+
+  <main class="splash">
+    <div class="intro">
+      <h1 class="home-greeting-title"></h1>
+      <p class="home-greeting-sub"></p>
+      <button onclick="window.location.href='home.html'">Start</button>
+    </div>
   </main>
 
   <footer id="mobileNav"></footer>
+
+  <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
-  <script>createNavBar("home");</script>
+  <script>
+    createNavBar("home");
+    document.getElementById("nav-home").innerText = t("home");
+    document.getElementById("nav-dreams").innerText = t("dreams");
+    document.getElementById("nav-reflections").innerText = t("reflections");
+    document.getElementById("nav-profile").innerText = t("profile");
+
+    document.querySelector(".home-greeting-title").innerText = t("welcome");
+    document.querySelector(".home-greeting-sub").innerText = t("subtitle");
+  </script>
 </body>
 </html>
