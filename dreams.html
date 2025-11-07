@@ -3,70 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE – Dreams</title>
+  <title>DAYLIFE — Dreams</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header id="appHeader"></header>
+  <header class="topbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="DAYLIFE Logo" />
+      <span>DAYLIFE</span>
+    </div>
+    <nav class="desktop-nav">
+      <a href="home.html" id="nav-home"></a>
+      <a href="dreams.html" id="nav-dreams"></a>
+      <a href="reflections.html" id="nav-reflections"></a>
+      <a href="profile.html" id="nav-profile"></a>
+    </nav>
+  </header>
 
-    <main class="page">
-      <div class="page-inner">
+  <main class="dreams-page">
+    <h1>💭 <span id="title-dreams"></span></h1>
+    <p id="subtitle-dreams"></p>
 
-        <section class="section dreams-intro">
-          <div class="section-title-row">
-            <span class="section-title-emoji">💭</span>
-            <div class="section-title-text">Your Dreams</div>
-          </div>
-          <p>Turn your days into dreams, and your dreams into days.</p>
-        </section>
+    <ul>
+      <li>🌴 Travel to Koh Phangan — <strong>In progress</strong></li>
+      <li>📘 Write my book — <strong>Planned</strong></li>
+      <li>💪 Become financially free — <strong>Completed</strong></li>
+    </ul>
+  </main>
 
-        <section class="section">
-          <div class="dreams-list">
-            <article class="dream-card">
-              <div class="dream-title-row">
-                <span class="dream-emoji">🏝️</span>
-                <div class="dream-title">Travel to Koh Phangan</div>
-              </div>
-              <div class="dream-meta">
-                Goal date: Dec 31, 2025
-              </div>
-              <span class="status-pill status-in-progress">In progress</span>
-            </article>
-
-            <article class="dream-card">
-              <div class="dream-title-row">
-                <span class="dream-emoji">📘</span>
-                <div class="dream-title">Write my book</div>
-              </div>
-              <div class="dream-meta">
-                Goal date: Mar 1, 2026
-              </div>
-              <span class="status-pill status-planned">Planned</span>
-            </article>
-
-            <article class="dream-card">
-              <div class="dream-title-row">
-                <span class="dream-emoji">💪</span>
-                <div class="dream-title">Become financially free</div>
-              </div>
-              <div class="dream-meta">
-                Goal reached: Aug 20, 2025
-              </div>
-              <span class="status-pill status-completed">Completed</span>
-            </article>
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-    <footer id="bottomNav"></footer>
-  </div>
-
+  <footer id="mobileNav"></footer>
+  <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
   <script>
     createNavBar("dreams");
+    document.getElementById("nav-home").innerText = t("home");
+    document.getElementById("nav-dreams").innerText = t("dreams");
+    document.getElementById("nav-reflections").innerText = t("reflections");
+    document.getElementById("nav-profile").innerText = t("profile");
+    document.getElementById("title-dreams").innerText = t("dreams");
+    document.getElementById("subtitle-dreams").innerText = "Turn your days into dreams, and your dreams into days.";
   </script>
 </body>
 </html>
