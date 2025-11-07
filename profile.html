@@ -3,56 +3,170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Profile</title>
+  <title>DAYLIFE – Profile</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="logo"><span>DAYLIFE</span></div>
-    <nav class="desktop-nav">
-      <a href="home.html" id="navHome"></a>
-      <a href="dreams.html" id="navDreams"></a>
-      <a href="reflections.html" id="navReflections"></a>
-      <a href="profile.html" id="navProfile"></a>
-    </nav>
-  </header>
+  <div class="app-shell">
+    <!-- HEADER NAVIGATION -->
+    <header id="appHeader"></header>
 
-  <main>
-    <h1>👤 <span id="profileTitle"></span></h1>
-    <p id="profileSubtitle"></p>
+    <!-- PAGE CONTENT -->
+    <main class="page">
+      <div class="page-inner">
 
-    <div class="settings-field">
-      <label>🌐 Langue / Language</label>
-      <select onchange="setLang(this.value)">
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="th">ไทย</option>
-        <option value="my">မြန်မာ</option>
-        <option value="de">Deutsch</option>
-        <option value="ru">Русский</option>
-        <option value="it">Italiano</option>
-        <option value="pt">Português</option>
-        <option value="zh">中文</option>
-        <option value="ja">日本語</option>
-        <option value="ar">العربية</option>
-      </select>
-    </div>
+        <!-- PROFILE HEADER -->
+        <section class="section profile-header">
+          <div class="profile-photo" id="profilePhoto">
+            <img src="assets/default-avatar.png" alt="Profile" id="profileImage">
+            <button id="changePhotoBtn" class="btn btn-icon">
+              <i data-lucide="camera"></i>
+            </button>
+          </div>
+          <h2 id="profileName">John Doe</h2>
+          <p id="profileTag">@dreamer123</p>
+          <p class="profile-country">🇫🇷 France</p>
+          <p class="profile-days">
+            <i data-lucide="calendar-days"></i>
+            <span id="daysInfo">18,676 days lived · 11,324 remaining</span>
+          </p>
+        </section>
 
-    <button onclick="alert('Logged out')">🚪 Se déconnecter</button>
-  </main>
+        <!-- STARS & STATS -->
+        <section class="section">
+          <div class="stats-row">
+            <div class="stat-card">
+              <i data-lucide="star" class="stat-icon"></i>
+              <div class="stat-value">38</div>
+              <div class="stat-label">Total Stars</div>
+            </div>
+            <div class="stat-card">
+              <i data-lucide="target" class="stat-icon"></i>
+              <div class="stat-value">6</div>
+              <div class="stat-label">Dreams Created</div>
+            </div>
+            <div class="stat-card">
+              <i data-lucide="check-circle-2" class="stat-icon"></i>
+              <div class="stat-value">2</div>
+              <div class="stat-label">Dreams Achieved</div>
+            </div>
+          </div>
+        </section>
 
-  <footer id="mobileNav"></footer>
+        <!-- ANON MODE -->
+        <section class="section">
+          <div class="card">
+            <div class="section-title-row">
+              <i data-lucide="eye-off"></i>
+              <div class="section-title-text">Anonymity Mode</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="anonymousToggle" />
+              <span class="slider"></span>
+            </label>
+            <p class="section-subtitle">Hide your name when sharing your dreams publicly.</p>
+          </div>
+        </section>
+
+        <!-- REFERRAL & QR -->
+        <section class="section">
+          <div class="card">
+            <div class="section-title-row">
+              <i data-lucide="share-2"></i>
+              <div class="section-title-text">Invite Friends</div>
+            </div>
+            <p>Your personal referral link:</p>
+            <div class="referral-box">
+              <input type="text" id="referralLink" readonly value="https://t.me/DayLifeBot?start=DREAM123" />
+              <button id="copyReferralBtn" class="btn btn-icon">
+                <i data-lucide="copy"></i>
+              </button>
+            </div>
+            <div class="qr-section">
+              <canvas id="qrCanvas"></canvas>
+              <p class="section-subtitle">Scan to join your journey</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SHARE -->
+        <section class="section">
+          <div class="card">
+            <div class="section-title-row">
+              <i data-lucide="send"></i>
+              <div class="section-title-text">Share Your Progress</div>
+            </div>
+            <div class="share-buttons">
+              <button class="btn-share" id="shareX"><i data-lucide="twitter"></i> X</button>
+              <button class="btn-share" id="shareFB"><i data-lucide="facebook"></i> Facebook</button>
+              <button class="btn-share" id="shareTG"><i data-lucide="send"></i> Telegram</button>
+              <button class="btn-share" id="shareTikTok"><i data-lucide="music"></i> TikTok</button>
+              <button class="btn-share" id="shareIG"><i data-lucide="camera"></i> Instagram</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <footer id="bottomNav"></footer>
+  </div>
+
+  <!-- 🔗 LIBRARIES -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
+
   <script>
     createNavBar("profile");
-    document.getElementById("navHome").innerText = t("home");
-    document.getElementById("navDreams").innerText = t("dreams");
-    document.getElementById("navReflections").innerText = t("reflections");
-    document.getElementById("navProfile").innerText = t("profile");
-    document.getElementById("profileTitle").innerText = t("profile");
-    document.getElementById("profileSubtitle").innerText = t("subtitle");
+
+    // === QR Code Generation ===
+    const qrCanvas = document.getElementById("qrCanvas");
+    QRCode.toCanvas(qrCanvas, "https://t.me/DayLifeBot?start=DREAM123", { width: 120 });
+
+    // === Copy referral link ===
+    document.getElementById("copyReferralBtn").addEventListener("click", () => {
+      const input = document.getElementById("referralLink");
+      input.select();
+      document.execCommand("copy");
+      alert("✅ Referral link copied!");
+    });
+
+    // === Anonymous mode toggle ===
+    document.getElementById("anonymousToggle").addEventListener("change", (e) => {
+      alert(e.target.checked ? "🕶️ Anonymous mode enabled" : "👤 Anonymous mode disabled");
+    });
+
+    // === Change Profile Photo ===
+    document.getElementById("changePhotoBtn").addEventListener("click", () => {
+      const choice = confirm("Would you like to upload a photo? Press Cancel to generate an AI avatar.");
+      if (choice) {
+        alert("📸 Upload function will open here");
+      } else {
+        alert("🤖 Generating your AI avatar...");
+      }
+    });
+
+    // === Social Shares ===
+    const shareData = {
+      title: "DAYLIFE",
+      text: "I'm making every day count on DAYLIFE! 🌕",
+      url: "https://t.me/DayLifeBot",
+    };
+
+    const shareButtons = document.querySelectorAll(".btn-share");
+    shareButtons.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          console.log("Share failed:", err);
+        }
+      });
+    });
   </script>
 </body>
 </html>
