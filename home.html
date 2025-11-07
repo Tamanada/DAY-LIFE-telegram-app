@@ -3,52 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Every Day Counts</title>
+  <title>DAYLIFE – Home</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="logo">
-      <img src="assets/logo.png" alt="DAYLIFE Logo" />
-      <span>DAYLIFE</span>
-    </div>
-    <nav class="desktop-nav">
-      <a href="home.html" id="navHome"></a>
-      <a href="dreams.html" id="navDreams"></a>
-      <a href="reflections.html" id="navReflections"></a>
-      <a href="profile.html" id="navProfile"></a>
-    </nav>
-  </header>
+  <div class="app-shell">
+    <!-- HEADER NAVIGATION -->
+    <header id="appHeader"></header>
 
-  <main class="splash">
-    <h1>🌕 <span id="welcomeTitle"></span></h1>
-    <p id="subtitle"></p>
+    <!-- PAGE CONTENT -->
+    <main class="page">
+      <div class="page-inner">
 
-    <div class="stats">
-      <p>⭐ 25 <span id="starsLabel"></span></p>
-      <p>💭 3 <span id="dreamsLabel"></span></p>
-      <p>💎 5 <span id="reflectionsLabel"></span></p>
-    </div>
+        <!-- HERO SECTION -->
+        <section class="section home-hero">
+          <div class="home-greeting">
+            <div class="home-greeting-top">
+              <div class="avatar-circle">🌕</div>
+              <div>
+                <div class="home-greeting-title" data-i18n="home.heroTitle">
+                  Welcome back to DAYLIFE
+                </div>
+                <div class="home-greeting-sub" data-i18n="home.heroSubtitle">
+                  Every day counts. Let’s make yours shine.
+                </div>
+              </div>
+            </div>
+            <div class="home-greeting-body" data-i18n="home.heroBody">
+              You have a limited number of days. Use them to build a life you are proud of – and enjoy every step of the way.
+            </div>
 
-    <button onclick="window.location.href='dreams.html'">✨ Start dreaming</button>
-  </main>
+            <div class="home-stats-row">
+              <div class="home-stat-pill">
+                <i data-lucide="star"></i>
+                <span><strong>25</strong> <span data-i18n="home.stat.stars">Stars earned</span></span>
+              </div>
+              <div class="home-stat-pill">
+                <i data-lucide="target"></i>
+                <span><strong>3</strong> <span data-i18n="home.stat.dreams">Dreams in progress</span></span>
+              </div>
+              <div class="home-stat-pill">
+                <i data-lucide="pen-line"></i>
+                <span><strong>5</strong> <span data-i18n="home.stat.reflections">Reflections written</span></span>
+              </div>
+            </div>
+          </div>
 
-  <footer id="mobileNav"></footer>
+          <!-- LIFE PROGRESS CARD -->
+          <div class="life-card">
+            <div class="life-label" data-i18n="home.life.label">You are living day</div>
+            <div class="life-number">#18,676</div>
+            <div class="life-caption">11,324 days ahead · 62.3% completed</div>
+            <div class="life-progress-bar">
+              <div class="life-progress-fill"></div>
+            </div>
+          </div>
+        </section>
 
+        <!-- QUOTE OF THE DAY -->
+        <section class="section">
+          <div class="quote-card">
+            <div class="quote-label">
+              <i data-lucide="sparkles"></i>
+              <span data-i18n="home.quote.label">TODAY'S INSPIRATION</span>
+            </div>
+            <div class="quote-text" data-i18n="home.quote.text">
+              “You are your own miracle.”
+            </div>
+            <div class="quote-sub" data-i18n="home.quote.sub">
+              Turn your days into dreams, and your dreams into days.
+            </div>
+          </div>
+        </section>
+
+        <!-- BLANK PAGE LINE -->
+        <section class="section">
+          <p class="section-subtitle" data-i18n="home.blankline">
+            Today is a blank page — write something that matters.
+          </p>
+        </section>
+
+        <!-- HOW TO EARN STARS -->
+        <section class="section">
+          <div class="card howto-card">
+            <div class="howto-header">
+              <div class="howto-title" data-i18n="home.howto.title">⭐ How to Earn Stars</div>
+              <div class="howto-sub" data-i18n="home.howto.subtitle">Every action counts towards your journey.</div>
+            </div>
+            <div class="howto-grid">
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="calendar-check"></i><span>Daily login</span></div>
+                <span class="howto-points">+1</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="target"></i><span>Add a dream</span></div>
+                <span class="howto-points">+2</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="check-circle"></i><span>Complete a dream</span></div>
+                <span class="howto-points">+5</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="flag"></i><span>Complete a milestone</span></div>
+                <span class="howto-points">+1</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="flame"></i><span>7-day streak</span></div>
+                <span class="howto-points">+10</span>
+              </div>
+              <div class="howto-row">
+                <div class="howto-left"><i data-lucide="users"></i><span>Invite a friend</span></div>
+                <span class="howto-points">+5</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <footer id="bottomNav"></footer>
+  </div>
+
+  <!-- 🔗 LIBRARIES -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
+
   <script>
     createNavBar("home");
-    document.getElementById("navHome").innerText = t("home");
-    document.getElementById("navDreams").innerText = t("dreams");
-    document.getElementById("navReflections").innerText = t("reflections");
-    document.getElementById("navProfile").innerText = t("profile");
-
-    document.getElementById("welcomeTitle").innerText = t("welcome");
-    document.getElementById("subtitle").innerText = t("subtitle");
-    document.getElementById("starsLabel").innerText = t("stars");
-    document.getElementById("dreamsLabel").innerText = t("dreamsInProgress");
-    document.getElementById("reflectionsLabel").innerText = t("reflectionsWritten");
   </script>
 </body>
 </html>
