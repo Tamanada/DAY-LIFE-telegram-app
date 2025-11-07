@@ -3,24 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE — Dreams</title>
-  <link rel="stylesheet" href="assets/nav.css" />
+  <title>DAYLIFE – Dreams</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <main class="page">
-    <section class="content" style="padding:20px;">
-      <h2>💭 Your Dreams</h2>
-      <p>Turn your days into dreams, and your dreams into days.</p>
-      <ul>
-        <li>🌴 Travel to Koh Phangan — <b>In progress</b></li>
-        <li>📖 Write my book — <b>Planned</b></li>
-        <li>💪 Become financially free — <b>Completed</b></li>
-      </ul>
-    </section>
-  </main>
+  <div class="app-shell">
+    <header id="appHeader"></header>
 
-  <footer id="mobileNav"></footer>
+    <main class="page">
+      <div class="page-inner">
+
+        <section class="section dreams-intro">
+          <div class="section-title-row">
+            <span class="section-title-emoji">💭</span>
+            <div class="section-title-text">Your Dreams</div>
+          </div>
+          <p>Turn your days into dreams, and your dreams into days.</p>
+        </section>
+
+        <section class="section">
+          <div class="dreams-list">
+            <article class="dream-card">
+              <div class="dream-title-row">
+                <span class="dream-emoji">🏝️</span>
+                <div class="dream-title">Travel to Koh Phangan</div>
+              </div>
+              <div class="dream-meta">
+                Goal date: Dec 31, 2025
+              </div>
+              <span class="status-pill status-in-progress">In progress</span>
+            </article>
+
+            <article class="dream-card">
+              <div class="dream-title-row">
+                <span class="dream-emoji">📘</span>
+                <div class="dream-title">Write my book</div>
+              </div>
+              <div class="dream-meta">
+                Goal date: Mar 1, 2026
+              </div>
+              <span class="status-pill status-planned">Planned</span>
+            </article>
+
+            <article class="dream-card">
+              <div class="dream-title-row">
+                <span class="dream-emoji">💪</span>
+                <div class="dream-title">Become financially free</div>
+              </div>
+              <div class="dream-meta">
+                Goal reached: Aug 20, 2025
+              </div>
+              <span class="status-pill status-completed">Completed</span>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer id="bottomNav"></footer>
+  </div>
+
   <script src="assets/nav.js"></script>
-  <script>createNavBar("dreams");</script>
+  <script>
+    createNavBar("dreams");
+  </script>
 </body>
 </html>
