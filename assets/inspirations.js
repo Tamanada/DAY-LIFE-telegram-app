@@ -1,263 +1,308 @@
 // assets/inspirations.js
-// 🌕 365 Daily Inspirations for DAYLIFE
+// Multilingual inspirations for DAYLIFE
+// Usage (exemple dans home.html) :
+// const msg = DaylifeInspirationsAPI.getForToday(DaylifeI18n?.getLang());
 
-const inspirations = [
-  "Every sunrise is a second chance.",
-  "You are exactly where you need to be.",
-  "Take a deep breath — today is a gift.",
-  "Start small, dream big, and move forward.",
-  "The moon reminds us that change is beautiful.",
-  "Gratitude turns ordinary days into blessings.",
-  "Your time is your most precious currency.",
-  "The journey matters more than the destination.",
-  "Do something today that your future self will thank you for.",
-  "Even the longest journey begins with one step.",
-  "Listen to your heart; it knows the way.",
-  "Smile — it’s free and changes everything.",
-  "Don’t wait for the right moment, make it right.",
-  "Every day holds the potential for magic.",
-  "You are stronger than your doubts.",
-  "Dreams don’t work unless you do.",
-  "Shine where you are, even if it’s dark.",
-  "Each moment is a seed of eternity.",
-  "Collect memories, not things.",
-  "Be kind — the world always needs more kindness.",
-  "The stars can’t shine without darkness.",
-  "Make peace with your past, live for your present.",
-  "The best time to begin was yesterday. The second best is today.",
-  "You are your own miracle.",
-  "Happiness is built, not found.",
-  "Progress, not perfection.",
-  "Be curious about life; it’s your best teacher.",
-  "You have survived 100% of your worst days.",
-  "Don’t count the days — make the days count.",
-  "Where focus goes, energy flows.",
-  "Let your light guide others through their night.",
-  "Everything starts with a thought — make it a good one.",
-  "Grow through what you go through.",
-  "Life begins at the edge of your comfort zone.",
-  "Slow down; your soul moves slower than your body.",
-  "Peace begins with presence.",
-  "Sometimes resting is the most productive thing you can do.",
-  "You don’t need to see the whole path — just the next step.",
-  "Celebrate the small victories.",
-  "A grateful heart is a magnet for miracles.",
-  "What you do daily becomes your destiny.",
-  "Dreams are the whispers of your soul.",
-  "Be your own kind of wonderful.",
-  "Each breath is proof of life’s generosity.",
-  "Don’t let fear borrow your future.",
-  "The world is changed by your example, not your opinion.",
-  "You are made of stardust and potential.",
-  "Kindness costs nothing but changes everything.",
-  "Turn your wounds into wisdom.",
-  "The most beautiful view comes after the hardest climb.",
-  "Joy is not found, it’s created.",
-  "Let go to grow.",
-  "Success is the sum of small efforts repeated daily.",
-  "You are the artist of your own story.",
-  "Choose love, even when it’s hard.",
-  "A calm mind is a powerful mind.",
-  "The moon doesn’t rush — yet it always arrives.",
-  "You can start over anytime you need.",
-  "Your vibe attracts your tribe.",
-  "Don’t compare, just become.",
-  "The present moment is the only reality.",
-  "Learn to rest, not to quit.",
-  "Everything you want is on the other side of effort.",
-  "Your story is still being written.",
-  "Silence often holds the answers.",
-  "Be thankful for what you have while working for what you want.",
-  "Faith is taking the first step without seeing the whole staircase.",
-  "Energy flows where attention goes.",
-  "The sun always rises, even after the darkest night.",
-  "Keep going, you’re growing.",
-  "Believe in your infinite potential.",
-  "The day you plant the seed is not the day you eat the fruit.",
-  "Trust the timing of your life.",
-  "Your dreams are valid and worthy.",
-  "Let your heart be your compass.",
-  "Dare to begin, and the path will appear.",
-  "Life is too short to live the same day twice.",
-  "Embrace what makes you different.",
-  "A simple act of kindness can ripple for miles.",
-  "Don’t chase people — attract them with your peace.",
-  "The quieter you become, the more you can hear.",
-  "Be patient — even the stars took time to form.",
-  "Turn your can'ts into cans and your dreams into plans.",
-  "Don’t just exist — live deeply.",
-  "When nothing goes right, go left.",
-  "The smallest light can guide the biggest heart.",
-  "Rest is part of growth.",
-  "Your worth is not measured by productivity.",
-  "Focus on progress, not speed.",
-  "Even the moon changes, but it never loses its light.",
-  "Do one brave thing today.",
-  "Your dreams chose you for a reason.",
-  "Miracles start with belief.",
-  "Take time to enjoy your own company.",
-  "Be the energy you want to attract.",
-  "You already have everything you need to start.",
-  "Life blooms when watered with gratitude.",
-  "Make your presence a gift.",
-  "There is beauty in every beginning.",
-  "Let go of control — trust your flow.",
-  "Today’s chaos is tomorrow’s clarity.",
-  "Joy grows when shared.",
-  "Peace is power.",
-  "Never forget how far you’ve come.",
-  "Don’t let routine steal your wonder.",
-  "Failure is not the opposite of success, it’s part of it.",
-  "You can’t pour from an empty cup — refill yours.",
-  "Light tomorrow with what you do today.",
-  "Your path is yours alone — walk it with courage.",
-  "Do what you can, with what you have, where you are.",
-  "The best views come after the hardest climbs.",
-  "It always seems impossible until it’s done.",
-  "The sky is not the limit — your mind is.",
-  "Be someone’s reason to smile today.",
-  "Start where you are and grow from there.",
-  "Don’t rush what needs time to bloom.",
-  "Your dreams are waiting for your action.",
-  "Love yourself through the process.",
-  "Keep your eyes on the stars and your feet on the ground.",
-  "Sometimes the smallest step changes everything.",
-  "Every act of love is a victory for humanity.",
-  "Let your inner light outshine the noise.",
-  "A single kind word can change someone’s entire day.",
-  "You are not late; you are right on time.",
-  "The moon teaches us that we can shine in phases.",
-  "Let gratitude guide your mornings.",
-  "Everything you imagine is already possible.",
-  "Your energy introduces you before you speak.",
-  "Don’t be afraid to shine a little brighter.",
-  "Each ending brings a new beginning.",
-  "Give more hugs, take fewer things seriously.",
-  "You are a story still unfolding.",
-  "Breathe. You’re doing fine.",
-  "Focus on the step in front, not the whole staircase.",
-  "Small joys make the biggest memories.",
-  "You are enough, right now, as you are.",
-  "The world needs your light — don’t hide it.",
-  "Sometimes the detour is the real journey.",
-  "Progress happens quietly; trust the process.",
-  "Be gentle with yourself, you’re growing.",
-  "Make space for what truly matters.",
-  "Your smile is someone’s sunshine.",
-  "You can’t control waves, but you can learn to surf.",
-  "Peace starts the moment you stop fighting yourself.",
-  "Turn your waiting into preparing.",
-  "Shine like the moon, steady and bright.",
-  "Keep your heart open — miracles love that.",
-  "It’s never too late to rewrite your story.",
-  "Be proud of how far you’ve come.",
-  "The most powerful force is belief in yourself.",
-  "Collect moments, not regrets.",
-  "A calm sea never made a skilled sailor.",
-  "Hope is a superpower.",
-  "Your heart knows the truth — follow it.",
-  "You have time for what truly matters.",
-  "Kindness is never wasted.",
-  "Every dream begins with courage.",
-  "You don’t need to see the finish line to keep going.",
-  "Stay humble, work quietly, shine brightly.",
-  "Love without counting.",
-  "You can rise even from ashes.",
-  "The world mirrors your energy — choose peace.",
-  "Celebrate progress, not perfection.",
-  "Doubt kills more dreams than failure ever will.",
-  "Gratitude is wealth of the heart.",
-  "Each morning, choose peace over worry.",
-  "Don’t wait for permission to shine.",
-  "The light you seek is already within you.",
-  "Your peace is your power.",
-  "Silence is the language of wisdom.",
-  "Love is the highest form of energy.",
-  "Be present — it’s all that truly exists.",
-  "A gentle word can calm a storm.",
-  "Every moment is a chance to start over.",
-  "Let your joy be louder than your fears.",
-  "No storm lasts forever.",
-  "Do it with love or not at all.",
-  "Don’t look back — you’re not going that way.",
-  "Courage doesn’t always roar; sometimes it whispers, 'Try again tomorrow.'",
-  "Make peace with who you are becoming.",
-  "Dream it, believe it, achieve it.",
-  "Stay curious — life loves that.",
-  "You are a lighthouse for others lost at sea.",
-  "Let kindness be your legacy.",
-  "Focus on what you can control — and release the rest.",
-  "Even a small spark can ignite a great flame.",
-  "The rhythm of your life is uniquely yours.",
-  "Be at peace with your pace.",
-  "Time you enjoy wasting is not wasted.",
-  "Be fearless in pursuit of your joy.",
-  "Everything is temporary — even the difficult days.",
-  "The more you give, the more you have.",
-  "Your calmness is contagious.",
-  "Find beauty in simplicity.",
-  "Stars can’t shine without the night sky.",
-  "It’s okay to rest. The moon does, too.",
-  "Happiness is homemade.",
-  "Trust that you are guided.",
-  "Nothing blooms all year — honor your seasons.",
-  "Learn, unlearn, relearn.",
-  "Stay close to people who feel like sunlight.",
-  "Magic happens when you let go of control.",
-  "Your story can inspire others — tell it.",
-  "Keep learning, even when it’s hard.",
-  "Forgive yourself for not knowing sooner.",
-  "The present moment is sacred.",
-  "Shine now, not later.",
-  "You are never too old to dream again.",
-  "Let your light heal others.",
-  "Every sunset is a chance to reset.",
-  "Smile at strangers — it’s a language of the soul.",
-  "Your patience will pay off.",
-  "When you change your thoughts, you change your world.",
-  "Be light-hearted, not hard-headed.",
-  "Your dreams are messages from your future.",
-  "Every heartbeat is proof that you matter.",
-  "Life isn’t happening to you, it’s responding to you.",
-  "Do it scared, but do it anyway.",
-  "Celebrate your uniqueness.",
-  "Let hope be your compass.",
-  "Keep your inner child alive.",
-  "Flow like water, adapt like air, shine like fire.",
-  "Give the world your best energy.",
-  "Be kind to yourself — you’re learning.",
-  "Life rewards action, not intention.",
-  "Where love grows, miracles appear.",
-  "The night is darkest before the dawn.",
-  "Let your soul rest and rise again.",
-  "Be brave enough to begin again.",
-  "One kind act can start a revolution.",
-  "You’re not behind, you’re on your own timeline.",
-  "Light up the world, one smile at a time.",
-  "Listen to the silence — it speaks truth.",
-  "You’re doing better than you think.",
-  "Dreams grow when watered daily.",
-  "Peace is not found, it’s made.",
-  "Every sunrise brings a new melody.",
-  "Life is what you create each morning.",
-  "Act with intention, not impulse.",
-  "Let your actions align with your purpose.",
-  "You are made for extraordinary things.",
-  "Never stop being amazed by life.",
-  "The moonlight doesn’t compete — it shines.",
-  "Whatever you do, do it with love.",
-  "A grateful soul is a powerful magnet.",
-  "Trust yourself — you’ve got this.",
-  "Every day is a canvas — paint it boldly.",
-  "Keep your faith higher than your fear.",
-  "The best is yet to come.",
-  "And still, you rise."
-];
+(function () {
+  const DaylifeInspirations = {
+    // 1) ENGLISH
+    en: [
+      "You are your own miracle.",
+      "Small steps still move you forward.",
+      "Today is a good day to begin.",
+      "Your future self is watching proudly.",
+      "Progress, not perfection, wins the race.",
+      "Rest is part of the journey.",
+      "You are allowed to dream bigger.",
+      "Your courage is louder than your fear.",
+      "One focused hour can change a year.",
+      "You don’t need permission to start.",
+      "Gratitude makes ordinary days shine.",
+      "Your story is still being written.",
+      "Show up today, even softly.",
+      "The life you want needs today’s choices.",
+      "Kindness is a superpower. Use it.",
+      "Be the person you needed before.",
+    ],
 
-// 🎯 Function to get today’s inspiration
-function getDailyInspiration() {
-  const dayOfYear = Math.floor(
-    (new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000
-  );
-  return inspirations[dayOfYear % inspirations.length];
-}
+    // 2) FRANÇAIS
+    fr: [
+      "Tu es ton propre miracle.",
+      "Les petits pas te font avancer.",
+      "Aujourd’hui est un bon jour pour commencer.",
+      "Ton futur toi te regarde avec fierté.",
+      "Le progrès, pas la perfection, gagne la course.",
+      "Le repos fait partie du voyage.",
+      "Tu as le droit de rêver plus grand.",
+      "Ton courage est plus fort que ta peur.",
+      "Une heure concentrée peut changer une année.",
+      "Tu n’as besoin de la permission de personne pour commencer.",
+      "La gratitude fait briller les jours ordinaires.",
+      "Ton histoire est encore en train de s’écrire.",
+      "Présente-toi aujourd’hui, même doucement.",
+      "La vie que tu veux commence par tes choix d’aujourd’hui.",
+      "La gentillesse est un superpouvoir. Utilise-le.",
+      "Sois la personne dont tu avais besoin avant.",
+    ],
+
+    // 3) ESPAÑOL
+    es: [
+      "Tú eres tu propio milagro.",
+      "Los pasos pequeños también te hacen avanzar.",
+      "Hoy es un buen día para empezar.",
+      "Tu futuro yo te mira con orgullo.",
+      "El progreso, no la perfección, gana la carrera.",
+      "Descansar también es parte del camino.",
+      "Tienes permiso para soñar más grande.",
+      "Tu valentía es más fuerte que tu miedo.",
+      "Una hora enfocada puede cambiar un año.",
+      "No necesitas permiso para comenzar.",
+      "La gratitud hace brillar los días comunes.",
+      "Tu historia aún se está escribiendo.",
+      "Preséntate hoy, aunque sea en voz baja.",
+      "La vida que quieres nace de tus decisiones de hoy.",
+      "La amabilidad es un superpoder. Úsalo.",
+      "Sé la persona que necesitabas antes.",
+    ],
+
+    // 4) PORTUGUÊS
+    pt: [
+      "Você é o seu próprio milagre.",
+      "Passos pequenos também te levam adiante.",
+      "Hoje é um bom dia para começar.",
+      "Seu eu do futuro olha para você com orgulho.",
+      "Progresso, não perfeição, vence a corrida.",
+      "Descansar faz parte da jornada.",
+      "Você tem permissão para sonhar mais alto.",
+      "Sua coragem é mais forte que o seu medo.",
+      "Uma hora focada pode mudar um ano.",
+      "Você não precisa de permissão para começar.",
+      "A gratidão faz brilhar os dias comuns.",
+      "Sua história ainda está sendo escrita.",
+      "Apareça hoje, mesmo de forma suave.",
+      "A vida que você quer nasce das escolhas de hoje.",
+      "A gentileza é um superpoder. Use-o.",
+      "Seja a pessoa que você precisava antes.",
+    ],
+
+    // 5) DEUTSCH
+    de: [
+      "Du bist dein eigenes Wunder.",
+      "Kleine Schritte bringen dich trotzdem voran.",
+      "Heute ist ein guter Tag, um anzufangen.",
+      "Dein zukünftiges Ich schaut stolz auf dich.",
+      "Fortschritt, nicht Perfektion, gewinnt das Rennen.",
+      "Ausruhen gehört zur Reise dazu.",
+      "Du darfst größer träumen.",
+      "Dein Mut ist lauter als deine Angst.",
+      "Eine fokussierte Stunde kann ein Jahr verändern.",
+      "Du brauchst keine Erlaubnis, um zu starten.",
+      "Dankbarkeit lässt gewöhnliche Tage leuchten.",
+      "Deine Geschichte wird noch geschrieben.",
+      "Zeig dich heute, auch leise.",
+      "Das Leben, das du willst, beginnt mit deinen heutigen Entscheidungen.",
+      "Freundlichkeit ist eine Superkraft. Nutze sie.",
+      "Sei die Person, die du früher gebraucht hättest.",
+    ],
+
+    // 6) ITALIANO
+    it: [
+      "Sei il tuo stesso miracolo.",
+      "I piccoli passi ti fanno comunque avanzare.",
+      "Oggi è un buon giorno per iniziare.",
+      "Il tuo futuro io ti guarda con orgoglio.",
+      "Il progresso, non la perfezione, vince la corsa.",
+      "Il riposo fa parte del viaggio.",
+      "Hai il permesso di sognare più in grande.",
+      "Il tuo coraggio è più forte della tua paura.",
+      "Un’ora di vero focus può cambiare un anno.",
+      "Non hai bisogno del permesso per cominciare.",
+      "La gratitudine fa brillare i giorni normali.",
+      "La tua storia è ancora in fase di scrittura.",
+      "Presentati oggi, anche dolcemente.",
+      "La vita che vuoi nasce dalle scelte di oggi.",
+      "La gentilezza è un superpotere. Usalo.",
+      "Sii la persona di cui avevi bisogno prima.",
+    ],
+
+    // 7) РУССКИЙ
+    ru: [
+      "Ты — своё собственное чудо.",
+      "Маленькие шаги тоже ведут вперёд.",
+      "Сегодня — хороший день, чтобы начать.",
+      "Твоё будущее «я» гордится тобой.",
+      "Побеждает прогресс, а не совершенство.",
+      "Отдых — это часть пути.",
+      "Ты можешь мечтать ещё смелее.",
+      "Твоя смелость сильнее твоего страха.",
+      "Один час фокуса может изменить год.",
+      "Тебе не нужно чьё-то разрешение, чтобы начать.",
+      "Благодарность делает обычные дни ярче.",
+      "Твоя история всё ещё пишется.",
+      "Появись сегодня, даже если тихо.",
+      "Жизнь, о которой ты мечтаешь, строится из сегодняшних решений.",
+      "Доброта — это суперсила. Пользуйся ею.",
+      "Стань тем человеком, который был тебе нужен раньше.",
+    ],
+
+    // 8) 简体中文
+    zh: [
+      "你本身就是一个奇迹。",
+      "小小的步伐也在前进。",
+      "今天是一个开始的好日子。",
+      "未来的你正带着骄傲看着现在的你。",
+      "进步，而不是完美，带来真正的胜利。",
+      "休息也是旅程的一部分。",
+      "你可以允许自己做更大的梦。",
+      "你的勇气比你的恐惧更响亮。",
+      "专注的一小时可以改变一整年。",
+      "开始不需要任何人的许可。",
+      "感恩让普通的日子也闪闪发光。",
+      "你的故事还在继续书写。",
+      "今天也请出现，就算是轻轻地。",
+      "你想要的人生来自你今天的选择。",
+      "善良是一种超能力，好好使用它。",
+      "做那个曾经的你最需要的人。",
+    ],
+
+    // 9) हिन्दी
+    hi: [
+      "तुम खुद अपना चमत्कार हो।",
+      "छोटे कदम भी तुम्हें आगे बढ़ाते हैं।",
+      "आज शुरू करने के लिए अच्छा दिन है।",
+      "तुम्हारा भविष्य का रूप तुम पर गर्व कर रहा है।",
+      "दौड़ को जीतता है प्रगति, परफेक्शन नहीं।",
+      "आराम भी सफर का हिस्सा है।",
+      "तुम्हें और बड़े सपने देखने की अनुमति है।",
+      "तुम्हारा साहस तुम्हारे डर से ज़्यादा ज़ोर से बोलता है।",
+      "एक घण्टा सच्चा फोकस पूरा साल बदल सकता है।",
+      "शुरू करने के लिए तुम्हें किसी की अनुमति नहीं चाहिए।",
+      "कृतज्ञता साधारण दिनों को भी चमका देती है।",
+      "तुम्हारी कहानी अभी भी लिखी जा रही है।",
+      "आज भी आओ, भले ही हल्के क़दमों से।",
+      "जो जीवन तुम चाहते हो, वह तुम्हारे आज के चुनावों से बनता है।",
+      "दयालुता एक सुपरपावर है, इसका उपयोग करो।",
+      "वह इंसान बनो जिसकी तुम्हें पहले ज़रूरत थी।",
+    ],
+
+    // 10) العربية
+    ar: [
+      "أنت معجزتك الخاصة.",
+      "الخطوات الصغيرة تدفعك إلى الأمام أيضاً.",
+      "اليوم يوم جيد لتبدأ.",
+      "ذاتك في المستقبل تنظر إليك بفخر.",
+      "التقدّم، لا الكمال، هو من يفوز بالسباق.",
+      "الراحة جزء من الرحلة.",
+      "يُسمح لك أن تحلم بشكل أكبر.",
+      "شجاعتك أعلى صوتاً من خوفك.",
+      "ساعة تركيز واحدة قد تغيّر سنة كاملة.",
+      "لست بحاجة إلى إذن كي تبدأ.",
+      "الامتنان يجعل الأيام العادية تتوهّج.",
+      "قصّتك لا تزال تُكتب.",
+      "احضر اليوم، حتى لو بهدوء.",
+      "الحياة التي تريدها تبدأ من اختياراتك اليوم.",
+      "اللطف قوة خارقة، استخدمها.",
+      "كن الشخص الذي كنت تحتاجه سابقاً.",
+    ],
+
+    // 11) ไทย
+    th: [
+      "คุณคือปาฏิหาริย์ของตัวเอง.",
+      "ก้าวเล็ก ๆ ก็พาไปข้างหน้าได้.",
+      "วันนี้เป็นวันที่ดีสำหรับการเริ่มต้น.",
+      "ตัวคุณในอนาคตมองคุณด้วยความภูมิใจ.",
+      "ความก้าวหน้า ไม่ใช่ความสมบูรณ์แบบ คือสิ่งที่ชนะ.",
+      "การพักผ่อนก็เป็นส่วนหนึ่งของการเดินทาง.",
+      "คุณมีสิทธิ์ที่จะฝันให้ใหญ่ขึ้น.",
+      "ความกล้าของคุณดังยิ่งกว่าความกลัว.",
+      "ชั่วโมงเดียวของสมาธิสามารถเปลี่ยนทั้งปีได้.",
+      "คุณไม่ต้องการอนุญาตจากใครเพื่อเริ่ม.",
+      "ความกตัญญูทำให้วันธรรมดาเปล่งประกาย.",
+      "เรื่องราวของคุณยังคงถูกเขียนต่อไป.",
+      "ปรากฏตัวในวันนี้ แม้จะเบา ๆ ก็ยังดี.",
+      "ชีวิตที่คุณต้องการเริ่มจากการเลือกในวันนี้.",
+      "ความเมตตาคือพลังพิเศษ ใช้มันให้บ่อย.",
+      "จงเป็นคนที่ตัวคุณในอดีตต้องการ.",
+    ],
+
+    // 12) မြန်မာ (Burmese)
+    my: [
+      "သင်က သင့်ရဲ့ ကိုယ့်ကိုယ်ရေး အရာဝတ္တုကြီးမားမှုပါ။",
+      "အသေးစားအဆင့်လေးတွေတောင် သင်ကို ရှေ့ဆက်စေတယ်။",
+      "ဒီနေ့ဟာ စတင်ဖို့ ကောင်းတဲ့နေ့ပဲ။",
+      "အနာဂတ်က သင်ကို ဂုဏ်ယူလျက်နေတာပါ။",
+      "အောင်နိုင်သတွေမှာ ပြီးပြည့်စုံမှုမဟုတ်၊ တိုးတက်မှုပဲ။",
+      "အနားယူမှုကလည်း ခရီးအပိုင်းတစ်ခုပါပဲ။",
+      "သင်ပိုမို အိပ်မက်ကြီးတွေ မက်ဖို့ လုံလောက်လောက်ခွင့်ရှိတယ်။",
+      "သင့် ယောက်ျားစိတ်က သင့် ကြောက်ရွံ့မှုထက် ပိုကြီးတယ်။",
+      "အာရုံစိုက် ထိုင်ပေးတဲ့ တစ်နာရီက တစ်နှစ်တည်းကို ပြောင်းလဲစေတတ်တယ်။",
+      "စတင်ဖို့ အခွင့်အထားတောင်းစရာ မလိုပါဘူး။",
+      "ကျေးဇူးတင်စိတ်က သာမန်နေ့တွေကိုပါ တောက်ပစေတယ်။",
+      "သင့် ဇာတ်ကားကို သေးသေးလေးပဲ နောက်ထပ် ရေးနေဆဲ။",
+      "ဒီနေ့လည်း သင့်ကို ယနေ့ကမ္ဘာမှာ ပေါ်ပေါက်စေပါ။",
+      "သင် လိုချင်တဲ့ဘဝဟာ ယနေ့ရဲ့ ရွေးချယ်မှုတွေကစတယ်။",
+      "ကြင်နာမှုက စူပါပါဝါပါပဲ၊ အကြိမ်ကြိမ် သုံးပါ။",
+      "အတိတ်က သင်လိုအပ်ခဲ့တဲ့ လူတစ်ယောက် ဖြစ်ပေးပါ။",
+    ],
+  };
+
+  // Helper: normalise language code (en-US -> en, etc.)
+  function normalizeLang(code) {
+    if (!code) return "en";
+    const short = code.toLowerCase().slice(0, 2);
+    const supported = Object.keys(DaylifeInspirations);
+    if (supported.includes(short)) return short;
+    return "en";
+  }
+
+  // Compute day-of-year (1–365)
+  function getDayOfYear(date) {
+    const start = new Date(date.getFullYear(), 0, 0);
+    const diff =
+      date - start +
+      (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
+    const oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay); // 1..366
+  }
+
+  const DaylifeInspirationsAPI = {
+    /**
+     * Get an inspiration string for "today" in the desired language.
+     * langCode: "en", "fr", "es", etc. (optional)
+     */
+    getForToday(langCode) {
+      const today = new Date();
+      const dayOfYear = getDayOfYear(today); // 1..366
+      const lang =
+        normalizeLang(
+          langCode ||
+            (window.DaylifeI18n && window.DaylifeI18n.getLang
+              ? window.DaylifeI18n.getLang()
+              : navigator.language || "en")
+        );
+      const arr = DaylifeInspirations[lang] || DaylifeInspirations.en;
+      const index = (dayOfYear - 1) % arr.length; // always in range
+      return arr[index];
+    },
+
+    /**
+     * Get a random inspiration in the chosen language.
+     */
+    getRandom(langCode) {
+      const lang =
+        normalizeLang(
+          langCode ||
+            (window.DaylifeI18n && window.DaylifeI18n.getLang
+              ? window.DaylifeI18n.getLang()
+              : navigator.language || "en")
+        );
+      const arr = DaylifeInspirations[lang] || DaylifeInspirations.en;
+      const idx = Math.floor(Math.random() * arr.length);
+      return arr[idx];
+    },
+  };
+
+  // Expose globally
+  window.DaylifeInspirations = DaylifeInspirations;
+  window.DaylifeInspirationsAPI = DaylifeInspirationsAPI;
+})();
