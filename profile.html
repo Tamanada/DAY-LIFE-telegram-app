@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE – Profile</title>
+  <title data-i18n="profile.title">DAYLIFE – Profile</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 
@@ -24,12 +24,12 @@
               <i data-lucide="camera"></i>
             </button>
           </div>
-          <h2 id="profileName">John Doe</h2>
-          <p id="profileTag">@dreamer123</p>
-          <p class="profile-country">🇫🇷 France</p>
+          <h2 id="profileName" data-i18n="profile.defaultName">John Doe</h2>
+          <p id="profileTag" data-i18n="profile.tag">@dreamer123</p>
+          <p class="profile-country" data-i18n="profile.country">🇫🇷 France</p>
           <p class="profile-days">
             <i data-lucide="calendar-days"></i>
-            <span id="daysInfo">18,676 days lived · 11,324 remaining</span>
+            <span id="daysInfo" data-i18n="profile.daysInfo">18,676 days lived · 11,324 remaining</span>
           </p>
         </section>
 
@@ -39,17 +39,17 @@
             <div class="stat-card">
               <i data-lucide="star" class="stat-icon"></i>
               <div class="stat-value">38</div>
-              <div class="stat-label">Total Stars</div>
+              <div class="stat-label" data-i18n="profile.totalStars">Total Stars</div>
             </div>
             <div class="stat-card">
               <i data-lucide="target" class="stat-icon"></i>
               <div class="stat-value">6</div>
-              <div class="stat-label">Dreams Created</div>
+              <div class="stat-label" data-i18n="profile.dreamsCreated">Dreams Created</div>
             </div>
             <div class="stat-card">
               <i data-lucide="check-circle-2" class="stat-icon"></i>
               <div class="stat-value">2</div>
-              <div class="stat-label">Dreams Achieved</div>
+              <div class="stat-label" data-i18n="profile.dreamsAchieved">Dreams Achieved</div>
             </div>
           </div>
         </section>
@@ -59,13 +59,15 @@
           <div class="card">
             <div class="section-title-row">
               <i data-lucide="eye-off"></i>
-              <div class="section-title-text">Anonymity Mode</div>
+              <div class="section-title-text" data-i18n="profile.anon">Anonymity Mode</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="anonymousToggle" />
               <span class="slider"></span>
             </label>
-            <p class="section-subtitle">Hide your name when sharing your dreams publicly.</p>
+            <p class="section-subtitle" data-i18n="profile.anonDesc">
+              Hide your name when sharing your dreams publicly.
+            </p>
           </div>
         </section>
 
@@ -74,9 +76,9 @@
           <div class="card">
             <div class="section-title-row">
               <i data-lucide="share-2"></i>
-              <div class="section-title-text">Invite Friends</div>
+              <div class="section-title-text" data-i18n="profile.inviteFriends">Invite Friends</div>
             </div>
-            <p>Your personal referral link:</p>
+            <p data-i18n="profile.referralText">Your personal referral link:</p>
             <div class="referral-box">
               <input type="text" id="referralLink" readonly value="https://t.me/DayLifeBot?start=DREAM123" />
               <button id="copyReferralBtn" class="btn btn-icon">
@@ -85,7 +87,7 @@
             </div>
             <div class="qr-section">
               <canvas id="qrCanvas"></canvas>
-              <p class="section-subtitle">Scan to join your journey</p>
+              <p class="section-subtitle" data-i18n="profile.scan">Scan to join your journey</p>
             </div>
           </div>
         </section>
@@ -95,7 +97,7 @@
           <div class="card">
             <div class="section-title-row">
               <i data-lucide="send"></i>
-              <div class="section-title-text">Share Your Progress</div>
+              <div class="section-title-text" data-i18n="profile.share">Share Your Progress</div>
             </div>
             <div class="share-buttons">
               <button class="btn-share" id="shareX"><i data-lucide="twitter"></i> X</button>
