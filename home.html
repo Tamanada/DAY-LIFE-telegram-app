@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAYLIFE – Home</title>
   <link rel="stylesheet" href="assets/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -13,112 +14,60 @@
     <header id="appHeader"></header>
 
     <!-- PAGE CONTENT -->
-    <main class="page">
+    <main class="page fade-in">
       <div class="page-inner">
 
-        <!-- HERO SECTION -->
-        <section class="section home-hero">
-          <div class="home-greeting">
-            <div class="home-greeting-top">
-              <div class="avatar-circle">🌕</div>
-              <div>
-                <div class="home-greeting-title" data-i18n="home.heroTitle">
-                  Welcome back to DAYLIFE
-                </div>
-                <div class="home-greeting-sub" data-i18n="home.heroSubtitle">
-                  Every day counts. Let’s make yours shine.
-                </div>
-              </div>
-            </div>
-            <div class="home-greeting-body" data-i18n="home.heroBody">
-              You have a limited number of days. Use them to build a life you are proud of – and enjoy every step of the way.
+        <!-- LIFE CARD -->
+        <section class="section life-section">
+          <div class="card life-card">
+            <div class="life-header">
+              <div class="life-halo"></div>
+              <div class="life-title" data-i18n="home.title">How many days did you arrive on Earth?</div>
             </div>
 
-            <div class="home-stats-row">
-              <div class="home-stat-pill">
-                <i data-lucide="star"></i>
-                <span><strong>25</strong> <span data-i18n="home.stat.stars">Stars earned</span></span>
+            <div class="life-numbers">
+              <div class="life-number">
+                <span id="daysLived">0</span>
+                <small data-i18n="home.daysLived">days lived</small>
               </div>
-              <div class="home-stat-pill">
-                <i data-lucide="target"></i>
-                <span><strong>3</strong> <span data-i18n="home.stat.dreams">Dreams in progress</span></span>
-              </div>
-              <div class="home-stat-pill">
-                <i data-lucide="pen-line"></i>
-                <span><strong>5</strong> <span data-i18n="home.stat.reflections">Reflections written</span></span>
+              <div class="life-number">
+                <span id="daysLeft">0</span>
+                <small data-i18n="home.daysLeft">days remaining</small>
               </div>
             </div>
-          </div>
 
-          <!-- LIFE PROGRESS CARD -->
-          <div class="life-card">
-            <div class="life-label" data-i18n="home.life.label">You are living day</div>
-            <div class="life-number">#18,676</div>
-            <div class="life-caption">11,324 days ahead · 62.3% completed</div>
             <div class="life-progress-bar">
-              <div class="life-progress-fill"></div>
+              <div class="life-progress-fill" id="progressFill"></div>
+            </div>
+
+            <p class="life-caption" id="expectedDate"></p>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="section">
+          <div class="stats-row">
+            <div class="stat-card">
+              <i data-lucide="star" class="stat-icon"></i>
+              <div class="stat-value" id="starsTotal">0</div>
+              <div class="stat-label" data-i18n="home.totalStars">Total Stars</div>
+            </div>
+            <div class="stat-card">
+              <i data-lucide="calendar" class="stat-icon"></i>
+              <div class="stat-value" id="streakDays">0</div>
+              <div class="stat-label" data-i18n="home.streak">Daily streak</div>
             </div>
           </div>
         </section>
 
-        <!-- QUOTE OF THE DAY -->
+        <!-- INSPIRATION -->
         <section class="section">
           <div class="quote-card">
-            <div class="quote-label">
-              <i data-lucide="sparkles"></i>
-              <span data-i18n="home.quote.label">TODAY'S INSPIRATION</span>
-            </div>
-            <div class="quote-text" data-i18n="home.quote.text">
-              “You are your own miracle.”
-            </div>
-            <div class="quote-sub" data-i18n="home.quote.sub">
-              Turn your days into dreams, and your dreams into days.
-            </div>
+            <div class="quote-label" data-i18n="home.inspirationTitle">✨ Today's Inspiration</div>
+            <div class="quote-text" id="dailyQuote"></div>
           </div>
         </section>
 
-        <!-- BLANK PAGE LINE -->
-        <section class="section">
-          <p class="section-subtitle" data-i18n="home.blankline">
-            Today is a blank page — write something that matters.
-          </p>
-        </section>
-
-        <!-- HOW TO EARN STARS -->
-        <section class="section">
-          <div class="card howto-card">
-            <div class="howto-header">
-              <div class="howto-title" data-i18n="home.howto.title">⭐ How to Earn Stars</div>
-              <div class="howto-sub" data-i18n="home.howto.subtitle">Every action counts towards your journey.</div>
-            </div>
-            <div class="howto-grid">
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="calendar-check"></i><span>Daily login</span></div>
-                <span class="howto-points">+1</span>
-              </div>
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="target"></i><span>Add a dream</span></div>
-                <span class="howto-points">+2</span>
-              </div>
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="check-circle"></i><span>Complete a dream</span></div>
-                <span class="howto-points">+5</span>
-              </div>
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="flag"></i><span>Complete a milestone</span></div>
-                <span class="howto-points">+1</span>
-              </div>
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="flame"></i><span>7-day streak</span></div>
-                <span class="howto-points">+10</span>
-              </div>
-              <div class="howto-row">
-                <div class="howto-left"><i data-lucide="users"></i><span>Invite a friend</span></div>
-                <span class="howto-points">+5</span>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
 
@@ -127,12 +76,155 @@
   </div>
 
   <!-- 🔗 LIBRARIES -->
-  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="assets/lang.js"></script>
   <script src="assets/nav.js"></script>
+  <script src="assets/inspirations.js"></script>
 
   <script>
+    // === NAVIGATION BAR ===
     createNavBar("home");
+
+    // === ICONS ===
+    lucide.createIcons();
+
+    // === Load profile ===
+    const profile = JSON.parse(localStorage.getItem("daylifeProfile"));
+    if (!profile) {
+      window.location.href = "welcome.html";
+    }
+
+    // === DEMOGRAPHIC LIFE EXPECTANCY ===
+    async function fetchLifeExpectancy(countryCode, sex) {
+      try {
+        const gender = sex === "female" ? "FE" : "MA";
+        const response = await fetch(
+          `https://api.worldbank.org/v2/country/${countryCode}/indicator/SP.DYN.LE00.${gender}.IN?format=json`
+        );
+        const data = await response.json();
+        if (data[1] && data[1][0]?.value) {
+          return data[1][0].value; // life expectancy in years
+        } else {
+          return 82; // default fallback
+        }
+      } catch (err) {
+        console.error("Life expectancy API error:", err);
+        return 82;
+      }
+    }
+
+    function calculateDaysLived(dob) {
+      const birth = new Date(dob);
+      const now = new Date();
+      const diff = now - birth;
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
+    }
+
+    async function initLifeCounter() {
+      const daysLived = calculateDaysLived(profile.dob);
+      let totalDays;
+
+      if (profile.mode === "by_demographics") {
+        const expectancyYears = await fetchLifeExpectancy(profile.country, profile.sex);
+        totalDays = expectancyYears * 365;
+      } else {
+        totalDays = 30000;
+      }
+
+      const daysLeft = Math.max(0, Math.floor(totalDays - daysLived));
+      const progress = Math.min(100, (daysLived / totalDays) * 100);
+
+      // Animation
+      let current = 0;
+      const step = Math.ceil(daysLived / 60);
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= daysLived) {
+          current = daysLived;
+          clearInterval(interval);
+        }
+        document.getElementById("daysLived").textContent = current.toLocaleString();
+      }, 16);
+
+      document.getElementById("daysLeft").textContent = daysLeft.toLocaleString();
+      document.getElementById("progressFill").style.width = `${progress}%`;
+
+      // Estimate date of "completion"
+      const expectedDate = new Date(new Date(profile.dob).getTime() + totalDays * 24 * 60 * 60 * 1000);
+      const formatted = expectedDate.toLocaleDateString(profile.lang || "en", {
+        year: "numeric", month: "long", day: "numeric"
+      });
+      document.getElementById("expectedDate").textContent =
+        `Estimated completion date: ${formatted}`;
+
+      // Load stars
+      const stars = parseInt(localStorage.getItem("daylifeStars") || "0");
+      document.getElementById("starsTotal").textContent = stars;
+
+      // Inspiration
+      const quote = getDailyInspiration();
+      document.getElementById("dailyQuote").textContent = quote;
+    }
+
+    // === Run counter ===
+    initLifeCounter();
+
+    // === Fade-in animation ===
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-loaded");
+    });
   </script>
+
+  <style>
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .life-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .life-halo {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 70%);
+      border-radius: 50%;
+      animation: haloPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes haloPulse {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+    }
+
+    .life-number {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 8px 0;
+    }
+
+    .life-caption {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-top: 10px;
+    }
+
+    .quote-card {
+      text-align: center;
+    }
+  </style>
 </body>
 </html>
