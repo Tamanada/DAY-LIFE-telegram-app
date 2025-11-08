@@ -3,227 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAYLIFE – Home</title>
+  <title>DAYLIFE – Every Day Counts</title>
   <link rel="stylesheet" href="assets/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
   <div class="app-shell">
-    <!-- HEADER NAVIGATION -->
+    <!-- HEADER -->
     <header id="appHeader"></header>
 
     <!-- PAGE CONTENT -->
-    <main class="page fade-in">
-      <div class="page-inner">
-
-        <!-- LIFE CARD -->
-        <section class="section life-section">
-          <div class="card life-card">
-            <div class="life-header">
-              <div class="life-halo"></div>
-              <div class="life-title" data-i18n="home.title">How many days did you arrive on Earth?</div>
+    <main class="page">
+      <div class="page-inner home-page">
+        <section class="section counter-section">
+          <h1 data-i18n="home.title">🌕 How many days did you arrive on Earth?</h1>
+          <div class="life-stats">
+            <div class="days-lived">
+              <span class="label" data-i18n="home.lived">Days lived</span>
+              <span id="daysLived" class="value">0</span>
             </div>
-
-            <div class="life-numbers">
-              <div class="life-number">
-                <span id="daysLived">0</span>
-                <small data-i18n="home.daysLived">days lived</small>
-              </div>
-              <div class="life-number">
-                <span id="daysLeft">0</span>
-                <small data-i18n="home.daysLeft">days remaining</small>
-              </div>
+            <div class="progress-bar">
+              <div id="lifeProgress" class="progress-fill"></div>
             </div>
-
-            <div class="life-progress-bar">
-              <div class="life-progress-fill" id="progressFill"></div>
-            </div>
-
-            <p class="life-caption" id="expectedDate"></p>
-          </div>
-        </section>
-
-        <!-- STATS -->
-        <section class="section">
-          <div class="stats-row">
-            <div class="stat-card">
-              <i data-lucide="star" class="stat-icon"></i>
-              <div class="stat-value" id="starsTotal">0</div>
-              <div class="stat-label" data-i18n="home.totalStars">Total Stars</div>
-            </div>
-            <div class="stat-card">
-              <i data-lucide="calendar" class="stat-icon"></i>
-              <div class="stat-value" id="streakDays">0</div>
-              <div class="stat-label" data-i18n="home.streak">Daily streak</div>
+            <div class="days-left">
+              <span class="label" data-i18n="home.remaining">Days remaining</span>
+              <span id="daysLeft" class="value">0</span>
             </div>
           </div>
         </section>
 
-        <!-- INSPIRATION -->
-        <section class="section">
-          <div class="quote-card">
-            <div class="quote-label" data-i18n="home.inspirationTitle">✨ Today's Inspiration</div>
-            <div class="quote-text" id="dailyQuote"></div>
+        <!-- STARS & QUOTE -->
+        <section class="section inspiration-section">
+          <div class="stars-count">
+            <i data-lucide="star"></i>
+            <span id="starCount">⭐ 0</span>
           </div>
+          <blockquote class="quote-box">
+            <p id="quoteText">Loading inspiration...</p>
+            <button id="newQuoteBtn" class="btn-refresh">
+              <i data-lucide="refresh-ccw"></i>
+              <span data-i18n="home.newInspiration">New inspiration</span>
+            </button>
+          </blockquote>
         </section>
-
       </div>
     </main>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- FOOTER -->
     <footer id="bottomNav"></footer>
   </div>
 
-  <!-- 🔗 LIBRARIES -->
+  <!-- 🔗 Scripts -->
   <script src="assets/lang.js"></script>
-  <script src="assets/nav.js"></script>
   <script src="assets/inspirations.js"></script>
-
+  <script src="assets/nav.js"></script>
   <script>
-    // === NAVIGATION BAR ===
     createNavBar("home");
-
-    // === ICONS ===
     lucide.createIcons();
 
-    // === Load profile ===
-    const profile = JSON.parse(localStorage.getItem("daylifeProfile"));
-    if (!profile) {
-      window.location.href = "welcome.html";
+    // --- Fake profile data for demo ---
+    const profile = JSON.parse(localStorage.getItem("daylifeProfile") || "{}");
+    const dob = profile.dob ? new Date(profile.dob) : new Date(1990, 0, 1);
+    const birthMs = dob.getTime();
+    const todayMs = Date.now();
+    const daysLived = Math.floor((todayMs - birthMs) / (1000 * 60 * 60 * 24));
+    const totalDays = 30000; // default value
+    const daysLeft = totalDays - daysLived;
+
+    document.getElementById("daysLived").textContent = daysLived.toLocaleString();
+    document.getElementById("daysLeft").textContent = daysLeft.toLocaleString();
+    document.getElementById("lifeProgress").style.width = `${(daysLived / totalDays) * 100}%`;
+
+    // --- Stars ---
+    const stars = localStorage.getItem("daylifeStars") || 0;
+    document.getElementById("starCount").textContent = `⭐ ${stars}`;
+
+    // --- Inspirations ---
+    function updateQuote(isRandom = false) {
+      const lang = window.DaylifeI18n ? DaylifeI18n.getLang() : "en";
+      const quote = isRandom
+        ? DaylifeInspirationsAPI.getRandom(lang)
+        : DaylifeInspirationsAPI.getForToday(lang);
+      document.getElementById("quoteText").textContent = quote;
     }
 
-    // === DEMOGRAPHIC LIFE EXPECTANCY ===
-    async function fetchLifeExpectancy(countryCode, sex) {
-      try {
-        const gender = sex === "female" ? "FE" : "MA";
-        const response = await fetch(
-          `https://api.worldbank.org/v2/country/${countryCode}/indicator/SP.DYN.LE00.${gender}.IN?format=json`
-        );
-        const data = await response.json();
-        if (data[1] && data[1][0]?.value) {
-          return data[1][0].value; // life expectancy in years
-        } else {
-          return 82; // default fallback
-        }
-      } catch (err) {
-        console.error("Life expectancy API error:", err);
-        return 82;
-      }
-    }
+    updateQuote(); // Initial quote
 
-    function calculateDaysLived(dob) {
-      const birth = new Date(dob);
-      const now = new Date();
-      const diff = now - birth;
-      return Math.floor(diff / (1000 * 60 * 60 * 24));
-    }
-
-    async function initLifeCounter() {
-      const daysLived = calculateDaysLived(profile.dob);
-      let totalDays;
-
-      if (profile.mode === "by_demographics") {
-        const expectancyYears = await fetchLifeExpectancy(profile.country, profile.sex);
-        totalDays = expectancyYears * 365;
-      } else {
-        totalDays = 30000;
-      }
-
-      const daysLeft = Math.max(0, Math.floor(totalDays - daysLived));
-      const progress = Math.min(100, (daysLived / totalDays) * 100);
-
-      // Animation
-      let current = 0;
-      const step = Math.ceil(daysLived / 60);
-      const interval = setInterval(() => {
-        current += step;
-        if (current >= daysLived) {
-          current = daysLived;
-          clearInterval(interval);
-        }
-        document.getElementById("daysLived").textContent = current.toLocaleString();
-      }, 16);
-
-      document.getElementById("daysLeft").textContent = daysLeft.toLocaleString();
-      document.getElementById("progressFill").style.width = `${progress}%`;
-
-      // Estimate date of "completion"
-      const expectedDate = new Date(new Date(profile.dob).getTime() + totalDays * 24 * 60 * 60 * 1000);
-      const formatted = expectedDate.toLocaleDateString(profile.lang || "en", {
-        year: "numeric", month: "long", day: "numeric"
-      });
-      document.getElementById("expectedDate").textContent =
-        `Estimated completion date: ${formatted}`;
-
-      // Load stars
-      const stars = parseInt(localStorage.getItem("daylifeStars") || "0");
-      document.getElementById("starsTotal").textContent = stars;
-
-      // Inspiration
-      const quote = getDailyInspiration();
-      document.getElementById("dailyQuote").textContent = quote;
-    }
-
-    // === Run counter ===
-    initLifeCounter();
-
-    // === Fade-in animation ===
-    document.addEventListener("DOMContentLoaded", () => {
-      document.body.classList.add("fade-loaded");
+    document.getElementById("newQuoteBtn").addEventListener("click", () => {
+      updateQuote(true);
+      document.getElementById("starCount").textContent = `⭐ ${++window.starCount || 1}`;
+      localStorage.setItem("daylifeStars", window.starCount);
     });
+
+    // --- Apply translations ---
+    if (window.DaylifeI18n) {
+      DaylifeI18n.applyTranslations();
+    }
   </script>
 
   <style>
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .life-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .life-halo {
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.25), transparent 70%);
-      border-radius: 50%;
-      animation: haloPulse 3s ease-in-out infinite;
-    }
-
-    @keyframes haloPulse {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-    }
-
-    .life-number {
+    /* --- Home page style additions --- */
+    .home-page h1 {
       text-align: center;
-      font-size: 24px;
       font-weight: 700;
-      margin: 8px 0;
+      color: #4b0082;
     }
 
-    .life-caption {
+    .life-stats {
       text-align: center;
+      margin: 20px auto;
+      width: 90%;
+    }
+
+    .life-stats .label {
       font-size: 14px;
-      color: var(--text-soft);
-      margin-top: 10px;
+      color: #64748b;
     }
 
-    .quote-card {
+    .life-stats .value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1e293b;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      border-radius: 10px;
+      background: #e2e8f0;
+      margin: 20px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      width: 0;
+      transition: width 1s ease-in-out;
+    }
+
+    .stars-count {
       text-align: center;
+      margin: 20px 0;
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .quote-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      font-style: italic;
+      position: relative;
+    }
+
+    .btn-refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      background: linear-gradient(90deg, #7c3aed, #2563eb);
+      border: none;
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform 0.2s, opacity 0.3s;
+    }
+
+    .btn-refresh:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
     }
   </style>
 </body>
