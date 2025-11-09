@@ -1060,3 +1060,38 @@ input:checked + .slider:before {
   font-size: 13px;
   color: var(--text-soft);
 }
+/* === Dreams Page === */
+.dreams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.dream-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.dream-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dream-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.dream-meta {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
